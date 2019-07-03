@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.bitmap.LargeBitmapActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/bt_scale_big"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="放大" />
+
+        <Button
+            android:id="@+id/bt_scale_small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="缩小" />
+
+        <!--<Button-->
+            <!--android:id="@+id/bt_y_add"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Y++" />-->
+        <!--<Button-->
+            <!--android:id="@+id/bt_y_reduce"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Y&#45;&#45;" />-->
+    </LinearLayout>
+
+    <com.example.study.view.ShowLargeBitmap
+        android:id="@+id/slb"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>

@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Copyright , 2015-2019, 健康无忧网络科技有限公司 <br>
+ * Copyright , 2015-2019 <br>
  * Author: 陈刘磊 1070379530@qq.com <br>
  * Date: 2019/6/21 13:37    <br>
  * Description: AIDLService   <br>

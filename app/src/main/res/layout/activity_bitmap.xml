@@ -24,6 +24,12 @@
             android:layout_height="match_parent"
             android:text="Glide使用"
             />
+        <Button
+            android:id="@+id/largeBitmap"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="显示大图"
+            />
     </LinearLayout>
 
     <ImageView

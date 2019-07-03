@@ -20,7 +20,7 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 
 /**
- * Copyright , 2015-2019, 健康无忧网络科技有限公司 <br>
+ * Copyright , 2015-2019 <br>
  * Author: 陈刘磊 1070379530@qq.com <br>
  * Date: 2019/6/14 15:09    <br>
  * Description: 安卓部分   <br>

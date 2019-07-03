@@ -11,7 +11,7 @@ import java.io.FileDescriptor;
 import java.io.PrintWriter;
 
 /**
- * Copyright , 2015-2019, 健康无忧网络科技有限公司 <br>
+ * Copyright , 2015-2019 <br>
  * Author: 陈刘磊 1070379530@qq.com <br>
  * Date: 2019/6/19 9:28    <br>
  * Description: TODO 请输入此类的功能   <br>

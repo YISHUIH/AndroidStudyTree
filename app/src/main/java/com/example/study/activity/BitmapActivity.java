@@ -13,6 +13,10 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.example.study.BaseActivity;
 import com.example.study.R;
+import com.example.study.activity.bitmap.LargeBitmapActivity;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -84,7 +88,7 @@ public class BitmapActivity extends BaseActivity {
     }
 
 
-    @OnClick({R.id.bt_ys, R.id.glide})
+    @OnClick({R.id.bt_ys, R.id.glide,R.id.largeBitmap})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.bt_ys:
@@ -92,6 +96,9 @@ public class BitmapActivity extends BaseActivity {
                 break;
             case R.id.glide:
                 Glide.with(iv).load(R.drawable.car).into(iv);
+                break;
+            case R.id.largeBitmap:
+                LargeBitmapActivity.start(this);
                 break;
             default:
         }

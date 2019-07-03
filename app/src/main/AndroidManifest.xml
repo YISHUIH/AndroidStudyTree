@@ -15,9 +15,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".activity.BitmapActivity"
-            android:label="Bitmap"
+        <activity android:name=".activity.bitmap.LargeBitmapActivity"
+            android:label="BitmapRegionDecoder"
             />
+        <activity
+            android:name=".activity.BitmapActivity"
+            android:label="Bitmap" />
         <activity
             android:name=".activity.thread.IntentServiceActivity"
             android:label="IntentService" />

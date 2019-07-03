@@ -6,7 +6,7 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 
 /**
- * Copyright , 2015-2019, 健康无忧网络科技有限公司 <br>
+ * Copyright , 2015-2019 <br>
  * Author: 陈刘磊 1070379530@qq.com <br>
  * Date: 2019/6/14 15:04    <br>
  * Description: 禁止滑动   <br>

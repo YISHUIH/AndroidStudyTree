@@ -6,7 +6,7 @@ import android.os.IBinder;
 import android.util.Log;
 
 /**
- * Copyright , 2015-2019, 健康无忧网络科技有限公司 <br>
+ * Copyright , 2015-2019 <br>
  * Author: 陈刘磊 1070379530@qq.com <br>
  * Date: 2019/6/28 15:33    <br>
  * Description: intentService   <br>
