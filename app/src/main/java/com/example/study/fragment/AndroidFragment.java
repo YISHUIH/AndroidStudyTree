@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.study.R;
+import com.example.study.activity.AndroidForQActivity;
 import com.example.study.activity.BitmapActivity;
 import com.example.study.activity.ThreadActivity;
 import com.example.study.activity.ZJActivity;
@@ -57,7 +58,7 @@ public class AndroidFragment extends Fragment {
     }
 
 
-    @OnClick({R.id.zj, R.id.thread,R.id.bitmap})
+    @OnClick({R.id.zj, R.id.thread,R.id.bitmap,R.id.android_Q})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.zj:
@@ -68,6 +69,9 @@ public class AndroidFragment extends Fragment {
                 break;
             case R.id.bitmap:
                 BitmapActivity.start(getActivity());
+                break;
+            case R.id.android_Q:
+                AndroidForQActivity.start(getActivity());
                 break;
             default:
         }

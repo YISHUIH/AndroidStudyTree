@@ -43,10 +43,6 @@ public class ShowLargeBitmap extends View {
     private static final int SHOW_DEFAULT_DIVSOR = 2;
 
     /**
-     * 资源流
-     */
-    private InputStream mInputStream;
-    /**
      * 原图宽
      */
     private int outWidth;
@@ -139,8 +135,7 @@ public class ShowLargeBitmap extends View {
         }
 
         mBitmap = mDecoder.decodeRegion(mRect, mOptions);
-//        mBitmap=Bitmap.createBitmap(mBitmap,0,0,mBitmap.getWidth(),mBitmap.getHeight(),mMatrix,true);
-//        canvas.drawBitmap(mBitmap, 0,0, null);
+
         canvas.drawBitmap(mBitmap, mMatrix, null);
     }
 
@@ -151,8 +146,6 @@ public class ShowLargeBitmap extends View {
      */
     public void setmInputStream(InputStream mInputStream) {
         Log.e(TAG, "setmInputStream");
-        this.mInputStream = mInputStream;
-
         if (mOptions == null) {
             mOptions = new BitmapFactory.Options();
         }
@@ -198,23 +191,15 @@ public class ShowLargeBitmap extends View {
             mSX = MIN_SX;
         }
         mMatrix.setScale(mSX, mSY);
-        if (mCenterX==(outWidth-centerViewX)){
-            mCenterX=centerViewX;
-            initRect();
-        }
-        if (mCenterY==(outHeight-centerViewY)){
-            mCenterY=centerViewY;
-            initRect();
-        }
         invalidate();
     }
 
 
-    private void setCenter(float offestX,float offestY){
+    private void setCenter(float offestX, float offestY) {
 
 
-        setmCenterX((int)offestX);
-        setmCenterY((int)offestY);
+        setmCenterX((int) offestX);
+        setmCenterY((int) offestY);
         if (mRect == null) {
             return;
         }
@@ -228,16 +213,16 @@ public class ShowLargeBitmap extends View {
      * @param offestX
      */
     private void setmCenterX(int offestX) {
-        if (Math.abs(offestX)<5){
+        if (Math.abs(offestX) < 5) {
             return;
         }
         this.mCenterX += offestX;
-        if (mCenterX<centerViewX){
-            mCenterX=centerViewX;
+        if (mCenterX < centerViewX) {
+            mCenterX = centerViewX;
             return;
         }
-        if (outWidth-mCenterX<centerViewX){
-            mCenterX=outWidth-centerViewX;
+        if (outWidth - mCenterX < centerViewX) {
+            mCenterX = outWidth - centerViewX;
         }
 
     }
@@ -248,38 +233,58 @@ public class ShowLargeBitmap extends View {
      * @param offestY
      */
     private void setmCenterY(int offestY) {
-        if (Math.abs(offestY)<5){
+        if (Math.abs(offestY) < 5) {
             return;
         }
         this.mCenterY += offestY;
-        if (mCenterY<centerViewY){
-            mCenterY=centerViewY;
+        if (mCenterY < centerViewY) {
+            mCenterY = centerViewY;
             return;
         }
 
-        if (outHeight-mCenterY<centerViewY){
-            mCenterY=outHeight-centerViewY;
+        if (outHeight - mCenterY < centerViewY) {
+            mCenterY = outHeight - centerViewY;
         }
     }
 
     float downX = 0;
     float downY = 0;
+
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                downX= event.getX();
+                downX = event.getX();
                 downY = event.getY();
                 return true;
             case MotionEvent.ACTION_MOVE:
-                float offsetX=event.getX()-downX;
-                float offsetY=event.getY()-downY;
-                setCenter(-offsetX,-offsetY);
+                float offsetX = event.getX() - downX;
+                float offsetY = event.getY() - downY;
+                setCenter(-offsetX, -offsetY);
                 return true;
             case MotionEvent.ACTION_UP:
                 break;
             default:
         }
         return false;
+    }
+
+    public synchronized void recycle() {
+        mRecycled = true;
+        if (mDecoder == null) {
+            return;
+        }
+        mDecoder.recycle();
+        if (mBitmap == null) {
+            return;
+        }
+        mBitmap.recycle();
+
+    }
+
+    private boolean mRecycled;
+
+    public boolean isRecycled() {
+        return mRecycled;
     }
 }

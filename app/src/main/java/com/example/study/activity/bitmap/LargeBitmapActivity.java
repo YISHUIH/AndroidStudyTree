@@ -54,4 +54,10 @@ public class LargeBitmapActivity extends BaseActivity {
             default:
         }
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        slb.recycle();
+    }
 }
