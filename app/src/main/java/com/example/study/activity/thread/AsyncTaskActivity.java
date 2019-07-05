@@ -4,34 +4,40 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.TextView;
 
 import com.example.study.R;
 
-import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.Executor;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class AsyncTaskActivity extends AppCompatActivity {
 
+
+    @BindView(R.id.tv)
+    TextView tv;
 
     public static void start(Context context) {
         Intent starter = new Intent(context, AsyncTaskActivity.class);
         context.startActivity(starter);
     }
 
+    private StringBuffer stringBuffer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_async_task);
-        for (int i=0;i<5;i++){
-            new MyAsyncTask().execute(new ArrayList());
+        ButterKnife.bind(this);
+        stringBuffer=new StringBuffer();
 
+        for (int i = 0; i < 5; i++) {
+            new MyAsyncTask().execute(new ArrayList());
         }
     }
 
@@ -61,12 +67,14 @@ public class AsyncTaskActivity extends AppCompatActivity {
                 //把当前进度转到onProgressUpdate，UI线程中
                 publishProgress(list1.size());
             }
-
-            for (int i=0;i<5;i++){
-                Log.i("task", "i:  " +i+"  threadName:  " +Thread.currentThread().getName());
+            StringBuffer stringBuffer = new StringBuffer();
+            for (int i = 0; i < 5; i++) {
+                String s = "i:  " + i + "  threadName:  " + Thread.currentThread().getName();
+                stringBuffer.append(s + "\n");
+                Log.i("task", s);
             }
 
-            return "完成喽";
+            return stringBuffer.toString();
         }
 
         /**
@@ -94,6 +102,8 @@ public class AsyncTaskActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
+            stringBuffer.append(s);
+            tv.setText(stringBuffer.toString());
         }
 
         /**
@@ -105,6 +115,7 @@ public class AsyncTaskActivity extends AppCompatActivity {
         @Override
         protected void onCancelled(String s) {
             super.onCancelled(s);
+            tv.setText(stringBuffer.toString());
         }
     }
 }
