@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,25 +9,34 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:orientation="horizontal"
-        >
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/start"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="start" />
         <Button
             android:id="@+id/send"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="向子线程发送消息"
-            />
+            android:text="向子线程发送消息" />
+
         <Button
             android:id="@+id/quitSafe"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="quitSafe"
-            />
+            android:text="quitSafe" />
+
         <Button
             android:id="@+id/quit"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="quit"
-            />
+            android:text="quit" />
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp" />
 </LinearLayout>

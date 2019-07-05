@@ -9,6 +9,7 @@ import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.study.BaseActivity;
 import com.example.study.R;
@@ -25,6 +26,8 @@ public class HandlerThreadActivity extends BaseActivity {
     Button quitSafe;
     @BindView(R.id.quit)
     Button quit;
+    @BindView(R.id.tv)
+    TextView tv;
     private MyHandlerThread handlerThread;
 
     private Handler uiHandler = new Handler() {
@@ -32,6 +35,7 @@ public class HandlerThreadActivity extends BaseActivity {
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             Log.i("name", "msg: uiHandler");
+            tv.setText("子线程收到并返回了一个笑脸");
         }
     };
 
@@ -45,24 +49,44 @@ public class HandlerThreadActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_handler_thread);
         ButterKnife.bind(this);
-        handlerThread = new MyHandlerThread("handlerThread");
-        handlerThread.start();
 
     }
 
 
-    @OnClick({R.id.send, R.id.quitSafe, R.id.quit})
+    @OnClick({R.id.send, R.id.quitSafe, R.id.quit, R.id.start})
     public void onViewClicked(View view) {
         switch (view.getId()) {
+            case R.id.start:
+                handlerThread = new MyHandlerThread("handlerThread");
+                handlerThread.start();
+                break;
             case R.id.send:
+                if (handlerThread==null){
+                    return;
+                }
+                if (handlerThread.getmHandler() == null) {
+                    return;
+                }
                 Message obtain = Message.obtain();
                 obtain.obj = uiHandler;
                 handlerThread.getmHandler().sendMessage((obtain));
                 break;
             case R.id.quitSafe:
+                if (handlerThread==null){
+                    return;
+                }
+                if (handlerThread.getmHandler() == null) {
+                    return;
+                }
                 handlerThread.quitSafely();
                 break;
             case R.id.quit:
+                if (handlerThread==null){
+                    return;
+                }
+                if (handlerThread.getmHandler() == null) {
+                    return;
+                }
                 handlerThread.quit();
                 break;
             default:
