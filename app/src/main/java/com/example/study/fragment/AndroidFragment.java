@@ -13,6 +13,7 @@ import com.example.study.R;
 import com.example.study.activity.AndroidForQActivity;
 import com.example.study.activity.BitmapActivity;
 import com.example.study.activity.ThreadActivity;
+import com.example.study.activity.ViewStudyActivity;
 import com.example.study.activity.ZJActivity;
 
 import butterknife.BindView;
@@ -58,7 +59,7 @@ public class AndroidFragment extends Fragment {
     }
 
 
-    @OnClick({R.id.zj, R.id.thread,R.id.bitmap,R.id.android_Q})
+    @OnClick({R.id.zj, R.id.thread,R.id.bitmap,R.id.android_Q,R.id.view})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.zj:
@@ -72,6 +73,9 @@ public class AndroidFragment extends Fragment {
                 break;
             case R.id.android_Q:
                 AndroidForQActivity.start(getActivity());
+                break;
+            case R.id.view:
+                ViewStudyActivity.start(getActivity());
                 break;
             default:
         }

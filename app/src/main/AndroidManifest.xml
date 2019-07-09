@@ -15,9 +15,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".activity.android_q.AppSpecificActivity"
-            android:label="AppSpecific"
+        <activity android:name=".activity.custom_view.ViewTouchActivity"
+            android:label="ViewTouch"
             />
+        <activity
+            android:name=".activity.ViewStudyActivity"
+            android:label="ViewStudy" />
+        <activity
+            android:name=".activity.android_q.AppSpecificActivity"
+            android:label="AppSpecific" />
         <activity
             android:name=".activity.AndroidForQActivity"
             android:label="AndroidForQ" />
