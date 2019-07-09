@@ -258,8 +258,12 @@ public class ShowLargeBitmap extends View {
                 downY = event.getY();
                 return true;
             case MotionEvent.ACTION_MOVE:
-                float offsetX = event.getX() - downX;
-                float offsetY = event.getY() - downY;
+                float x = event.getX();
+                float y = event.getY();
+                float offsetX = x - downX;
+                float offsetY = y - downY;
+                downX = x;
+                downY = y;
                 setCenter(-offsetX, -offsetY);
                 return true;
             case MotionEvent.ACTION_UP:
