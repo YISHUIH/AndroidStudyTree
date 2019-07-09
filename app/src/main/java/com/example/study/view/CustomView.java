@@ -58,6 +58,8 @@ public class CustomView extends View {
      */
     private final int LINE_SPACE = TEXT_LINE_SPACE / 2;
 
+    private int currentIndex;
+
     /**
      * @param context
      */
@@ -76,7 +78,7 @@ public class CustomView extends View {
     }
 
     private void init() {
-        mTitles = new String[]{"第一个标题", "第二个标题", "第三个标题", "第四个标题", "第五个标题", "第六个标题", "第七个标题", "第八个标题", "第九个标题", "第十个标题","第11个标题","第12个标题"};
+        mTitles = new String[]{"第一个标题", "第二个标题", "第三个标题", "第四个标题", "第五个标题", "第六个标题", "第七个标题", "第八个标题", "第九个标题", "第十个标题", "第11个标题", "第12个标题"};
 
         //划线的画笔
         mLinePaint = new Paint();
@@ -116,22 +118,28 @@ public class CustomView extends View {
     }
 
     int height;
+
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         Log.e(TAG, "onDraw");
         int titleWidth = getTextWidth(mTitles[0]);
         int titleHeight = getTextHeight(mTitles[0]);
-        height=titleHeight;
+        height = titleHeight;
         mCenterTextY = mCenterTextDefalutY;
         for (String title : mTitles) {
             canvas.drawText(title, mCenterX, mCenterTextY + (float) titleHeight / 4, mTitlePaint);
+            if (title.equals(mTitles[mTitles.length - 1])) {
+                break;
+            }
             mCenterTextY += titleHeight + TEXT_LINE_SPACE;
         }
         //上面的线
         drawTopLine(canvas, titleWidth, titleHeight);
 
         drawBottomLine(canvas, titleWidth, titleHeight);
+        canvas.drawCircle(mCenterX, mCenterTextY, 10, mTitlePaint);
+        canvas.drawCircle(mCenterX, mCenterY, 10, mLinePaint);
     }
 
     private void drawTopLine(Canvas canvas, int titleWidth, float titleHeight) {
@@ -189,7 +197,7 @@ public class CustomView extends View {
             y = event.getY();
             if (v > 0) {
                 //已经显示的是第一条，禁止下滑
-                if (Math.abs(mCenterTextDefalutY - mCenterY) <= TEXT_LINE_SPACE) {
+                if (mCenterTextDefalutY - mCenterY >= 0) {
                     mCenterTextDefalutY = mCenterY;
                     invalidate();
                     return true;
@@ -201,7 +209,8 @@ public class CustomView extends View {
                 Log.e(TAG, "mCenterTextY:  " + mCenterTextY);
                 Log.e(TAG, "mCenterY:  " + mCenterY);
                 Log.e(TAG, "mCenterTextDefalutY:  " + mCenterTextDefalutY);
-                if (Math.abs(mCenterTextY -mCenterY) <= TEXT_LINE_SPACE) {
+                if (mCenterTextY - mCenterY <= 0) {
+                    mCenterTextDefalutY = mCenterY-((mTitles.length-1)*(height+TEXT_LINE_SPACE));
                     invalidate();
                     return true;
                 }
@@ -211,8 +220,18 @@ public class CustomView extends View {
             return true;
         }
         if (event.getAction() == MotionEvent.ACTION_UP) {
-            int offest = Math.abs(mCenterTextDefalutY - mCenterY);
-            Log.e(TAG, "offest:  " + offest/height);
+            int offset=mCenterY-mCenterTextDefalutY;
+
+            int i = offset / (height + TEXT_LINE_SPACE);
+            int i1 = offset % (height + TEXT_LINE_SPACE);
+            if (i1>(height + TEXT_LINE_SPACE)){
+                i++;
+            }
+            currentIndex=i;
+            mCenterTextDefalutY = mCenterY-(i*(height+TEXT_LINE_SPACE));
+            invalidate();
+            Log.e(TAG, "i:  " + i);
+            Log.e(TAG, "i1:  " + i1);
             return true;
         }
         return super.onTouchEvent(event);
