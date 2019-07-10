@@ -16,8 +16,8 @@ import butterknife.ButterKnife;
 
 public class ViewTouchActivity extends BaseActivity {
 
-    @BindView(R.id.cv)
-    CustomView cv;
+//    @BindView(R.id.cv)
+//    CustomView cv;
 
     public static void start(Context context) {
         Intent starter = new Intent(context, ViewTouchActivity.class);

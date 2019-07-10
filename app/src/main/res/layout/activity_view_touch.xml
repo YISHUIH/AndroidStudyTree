@@ -22,11 +22,6 @@
             android:layout_height="wrap_content"
             android:text="点击" />
 
-        <com.example.study.view.CustomView
-            android:id="@+id/cv"
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:layout_gravity="center"
-            android:background="@color/white" />
+
     </com.example.study.view.CustomFrameLayout>
 </android.support.constraint.ConstraintLayout>

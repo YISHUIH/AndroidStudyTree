@@ -58,18 +58,18 @@ public class CustomFrameLayout extends FrameLayout {
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
         Log.e(TAG,"dispatchTouchEvent"+"  action:"+ev.getAction());
-//        if (ev.getAction()==MotionEvent.ACTION_DOWN){
-//            return true;
-//        }
+        if (ev.getAction()==MotionEvent.ACTION_DOWN){
+            return true;
+        }
         return super.dispatchTouchEvent(ev);
     }
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
         Log.e(TAG,"onInterceptTouchEvent"+"  action:"+ev.getAction());
-//        if (ev.getAction()==MotionEvent.ACTION_MOVE){
-//            return true;
-//        }
+        if (ev.getAction()==MotionEvent.ACTION_MOVE){
+            return true;
+        }
         return super.onInterceptTouchEvent(ev);
     }
 
@@ -77,12 +77,12 @@ public class CustomFrameLayout extends FrameLayout {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         Log.e(TAG,"onTouchEvent"+"  action:"+event.getAction());
-//        if (event.getAction()==MotionEvent.ACTION_DOWN){
-//            return true;
-//        }
-//        if (event.getAction()==MotionEvent.ACTION_MOVE){
-//            return true;
-//        }
+        if (event.getAction()==MotionEvent.ACTION_DOWN){
+            return true;
+        }
+        if (event.getAction()==MotionEvent.ACTION_MOVE){
+            return true;
+        }
         return super.onTouchEvent(event);
     }
 }
