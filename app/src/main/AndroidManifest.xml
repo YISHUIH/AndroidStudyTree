@@ -15,9 +15,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".activity.custom_view.ViewTouchActivity"
-            android:label="ViewTouch"
+        <activity android:name=".activity.custom_view.CustomViewActivity"
+            android:label="CustomView"
             />
+        <activity
+            android:name=".activity.custom_view.ViewTouchActivity"
+            android:label="ViewTouch" />
         <activity
             android:name=".activity.ViewStudyActivity"
             android:label="ViewStudy" />

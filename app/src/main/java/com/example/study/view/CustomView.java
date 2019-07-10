@@ -10,6 +10,9 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Copyright , 2015-2019,  <br>
  * Author: 陈刘磊 1070379530@qq.com <br>
@@ -18,10 +21,26 @@ import android.view.View;
  */
 public class CustomView extends View {
     private static final String TAG = "CustomView";
+
+    /**
+     * 文字之间的间隔
+     */
+    private final int TEXT_LINE_SPACE = 40;
+
+    /**
+     * 文字和线之间的间隔
+     */
+    private final int LINE_SPACE = TEXT_LINE_SPACE / 2;
+    /**
+     * 默认的文字大小
+     */
+    private final float DEFAULT_TEXT_SIZE = 32;
+
+
     /**
      * 标题
      */
-    private String[] mTitles;
+    private List<String> mTitles;
     /**
      * 画线的画笔
      */
@@ -49,16 +68,34 @@ public class CustomView extends View {
     int mCenterTextY;
 
     /**
-     * 文字之间的间隔
+     * 当前文本的下标
      */
-    private final int TEXT_LINE_SPACE = 40;
+    private int currentIndex;
+    /**
+     * 文本高度
+     */
+    private int titleHeight;
+    /**
+     * 文本和行间距的高度
+     */
+    private int textTotalHeight;
 
     /**
-     * 文字和线之间的间隔
+     * 是否允许滑动超出范围
      */
-    private final int LINE_SPACE = TEXT_LINE_SPACE / 2;
+    private boolean disAllowOutTopOrBottom = false;
 
-    private int currentIndex;
+    /**
+     * 当前手指所在的坐标
+     */
+    float x;
+    float y;
+
+
+    /**
+     * 选择监听
+     */
+    private OnItemSelectListener onItemSelectListener;
 
     /**
      * @param context
@@ -78,17 +115,21 @@ public class CustomView extends View {
     }
 
     private void init() {
-        mTitles = new String[]{"第一个标题", "第二个标题", "第三个标题", "第四个标题", "第五个标题", "第六个标题", "第七个标题", "第八个标题", "第九个标题", "第十个标题", "第11个标题", "第12个标题"};
+        mTitles = new ArrayList<>();
 
         //划线的画笔
         mLinePaint = new Paint();
-        mLinePaint.setStrokeWidth(10);
-        mLinePaint.setColor(Color.RED);
+
+        mLinePaint.setColor(Color.GRAY);
         //画标题的画笔
         mTitlePaint = new Paint();
-        mTitlePaint.setTextSize(64);
+        mTitlePaint.setTextSize(DEFAULT_TEXT_SIZE);
         mTitlePaint.setTextAlign(Paint.Align.CENTER);
 
+        //文本高度
+        titleHeight = (int) DEFAULT_TEXT_SIZE;
+        //文本和行间距高度
+        textTotalHeight = titleHeight + TEXT_LINE_SPACE;
 
     }
 
@@ -107,55 +148,107 @@ public class CustomView extends View {
 
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
-        super.onLayout(changed, left, top, right, bottom);
         Log.e(TAG, "onLayout");
+        super.onLayout(changed, left, top, right, bottom);
+
     }
 
     @Override
     public void layout(int l, int t, int r, int b) {
-        super.layout(l, t, r, b);
         Log.e(TAG, "layout");
+        super.layout(l, t, r, b);
     }
 
-    int height;
 
     @Override
     protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
         Log.e(TAG, "onDraw");
-        int titleWidth = getTextWidth(mTitles[0]);
-        int titleHeight = getTextHeight(mTitles[0]);
-        height = titleHeight;
+        super.onDraw(canvas);
+
+        //没有数据就返回
+        if (mTitles.size() == 0) {
+            return;
+        }
+        if (currentIndex < 0) {
+            currentIndex = 0;
+        }
+        if (currentIndex >= mTitles.size()) {
+            currentIndex = mTitles.size() - 1;
+        }
+
+
+        //整体的偏移量
+        int offset = mCenterY - mCenterTextDefalutY;
+        //偏移了多少个文本的高度
+
+        int i = offset / textTotalHeight;
+
+        int i1 = offset % (textTotalHeight);
+        //如果超过余下的，大于一个高度，就加一
+        if (i1 > textTotalHeight / 2) {
+            i++;
+        }
+        currentIndex = i;
+
+
         mCenterTextY = mCenterTextDefalutY;
         for (String title : mTitles) {
+            int index = mTitles.indexOf(title);
+            if (index == currentIndex) {
+                //当前文本设置颜色
+                mTitlePaint.setColor(Color.BLACK);
+                //设置回调。
+                if (onItemSelectListener != null) {
+                    onItemSelectListener.onItemSelect(currentIndex);
+                }
+            } else {
+                //其它文本设置颜色
+                mTitlePaint.setColor(Color.GRAY);
+            }
             canvas.drawText(title, mCenterX, mCenterTextY + (float) titleHeight / 4, mTitlePaint);
-            if (title.equals(mTitles[mTitles.length - 1])) {
+            if (title.equals(mTitles.get(mTitles.size() - 1))) {
                 break;
             }
             mCenterTextY += titleHeight + TEXT_LINE_SPACE;
         }
         //上面的线
-        drawTopLine(canvas, titleWidth, titleHeight);
+        drawTopLine(canvas, titleHeight);
 
-        drawBottomLine(canvas, titleWidth, titleHeight);
-        canvas.drawCircle(mCenterX, mCenterTextY, 10, mTitlePaint);
-        canvas.drawCircle(mCenterX, mCenterY, 10, mLinePaint);
+        drawBottomLine(canvas, titleHeight);
     }
 
-    private void drawTopLine(Canvas canvas, int titleWidth, float titleHeight) {
-        float startX = mCenterX - (float) titleWidth / 2;
+    /**
+     * 绘制上方的横线
+     *
+     * @param canvas
+     * @param titleHeight
+     */
+    private void drawTopLine(Canvas canvas, float titleHeight) {
+        float startX = 0;
         float startY = mCenterY - titleHeight / 2 - LINE_SPACE;
-        float stopX = startX + titleWidth;
+        float stopX = mCenterX * 2;
         canvas.drawLine(startX, startY, stopX, startY, mLinePaint);
     }
 
-    private void drawBottomLine(Canvas canvas, int titleWidth, float titleHeight) {
-        float startX = mCenterX - (float) titleWidth / 2;
+    /**
+     * 绘制下方的横线
+     *
+     * @param canvas
+     * @param titleHeight
+     */
+    private void drawBottomLine(Canvas canvas, float titleHeight) {
+        float startX = 0;
         float startY = mCenterY + titleHeight / 2 + LINE_SPACE;
-        float stopX = startX + titleWidth;
+        float stopX = mCenterX * 2;
         canvas.drawLine(startX, startY, stopX, startY, mLinePaint);
     }
 
+    /**
+     * 获取文本区域所在的矩形区域，帮助获取绘制范围宽高
+     *
+     * @param title
+     * @return
+     */
     private Rect getTextBounds(String title) {
         Rect bounds = new Rect();
         mTitlePaint.getTextBounds(title, 0, title.length(), bounds);
@@ -178,8 +271,6 @@ public class CustomView extends View {
         return super.dispatchTouchEvent(event);
     }
 
-    float x;
-    float y;
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
@@ -191,55 +282,105 @@ public class CustomView extends View {
             return true;
         }
         if (event.getAction() == MotionEvent.ACTION_MOVE) {
-
-
+            //和上次比划过的距离
             float v = event.getY() - y;
             y = event.getY();
-            if (v > 0) {
-                //已经显示的是第一条，禁止下滑
-                if (mCenterTextDefalutY - mCenterY >= 0) {
-                    mCenterTextDefalutY = mCenterY;
-                    invalidate();
-                    return true;
-                }
-            }
-
-            if (v < 0) {
-                //已经显示的是最后一条，禁止上滑
-                Log.e(TAG, "mCenterTextY:  " + mCenterTextY);
-                Log.e(TAG, "mCenterY:  " + mCenterY);
-                Log.e(TAG, "mCenterTextDefalutY:  " + mCenterTextDefalutY);
-                if (mCenterTextY - mCenterY <= 0) {
-                    mCenterTextDefalutY = mCenterY-((mTitles.length-1)*(height+TEXT_LINE_SPACE));
-                    invalidate();
-                    return true;
-                }
+            if (checkIsAllowOut(v)) {
+                return true;
             }
             mCenterTextDefalutY += v;
             invalidate();
             return true;
         }
         if (event.getAction() == MotionEvent.ACTION_UP) {
-            int offset=mCenterY-mCenterTextDefalutY;
-
-            int i = offset / (height + TEXT_LINE_SPACE);
-            int i1 = offset % (height + TEXT_LINE_SPACE);
-            if (i1>(height + TEXT_LINE_SPACE)){
-                i++;
+            //防止滑出了第一条
+            if (mCenterTextDefalutY - mCenterY >= 0) {
+                //默认的初始文本中心和view中心相同或者大于就是在第一条
+                mCenterTextDefalutY = mCenterY;
+                invalidate();
+                return true;
             }
-            currentIndex=i;
-            mCenterTextDefalutY = mCenterY-(i*(height+TEXT_LINE_SPACE));
+            //防止滑出了最后一条
+            if (mCenterTextY - mCenterY <= 0) {
+                mCenterTextDefalutY = mCenterY - ((mTitles.size() - 1) * textTotalHeight);
+                invalidate();
+                return true;
+            }
+
+
+            mCenterTextDefalutY = mCenterY - (currentIndex * textTotalHeight);
             invalidate();
-            Log.e(TAG, "i:  " + i);
-            Log.e(TAG, "i1:  " + i1);
+
+
             return true;
         }
         return super.onTouchEvent(event);
+    }
+
+    /**
+     * 检查是否允许超出顶部和底部
+     *
+     * @param v
+     * @return
+     */
+    private boolean checkIsAllowOut(float v) {
+        if (!disAllowOutTopOrBottom) {
+            return false;
+        }
+        if (v > 0) {
+            //已经显示的是第一条，禁止下滑
+            if (mCenterTextDefalutY - mCenterY >= 0) {
+                //默认的初始文本中心和view中心相同或者大于就是在第一条
+                mCenterTextDefalutY = mCenterY;
+                invalidate();
+                return true;
+            }
+        }
+
+        if (v < 0) {
+            //已经显示的是最后一条，禁止上滑
+            Log.e(TAG, "mCenterTextY:  " + mCenterTextY);
+            Log.e(TAG, "mCenterY:  " + mCenterY);
+            Log.e(TAG, "mCenterTextDefalutY:  " + mCenterTextDefalutY);
+            if (mCenterTextY - mCenterY <= 0) {
+                mCenterTextDefalutY = mCenterY - ((mTitles.size() - 1) * textTotalHeight);
+                invalidate();
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
     public boolean performClick() {
         Log.e(TAG, "performClick");
         return super.performClick();
+    }
+
+    public void setOnItemSelectListener(OnItemSelectListener onItemSelectListener) {
+        this.onItemSelectListener = onItemSelectListener;
+    }
+
+    /**
+     * 设置数据
+     *
+     * @param mTitles
+     */
+    public void setmTitles(List<String> mTitles) {
+        this.mTitles = mTitles;
+        invalidate();
+    }
+
+
+    /**
+     * 选择回调接口
+     */
+    public interface OnItemSelectListener {
+        /**
+         * 返回当前的index
+         *
+         * @param index
+         */
+        void onItemSelect(int index);
     }
 }
