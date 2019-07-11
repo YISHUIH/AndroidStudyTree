@@ -16,12 +16,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".activity.jetpack.LiveDataActivity"
-            android:label="LiveData"
+        <activity android:name=".activity.jetpack.DataBandingActivity"
+            android:label="DataBanding"
             />
-        <activity android:name=".activity.filemanager.FileManagerActivity"
-            android:label="FileManager"
-            />
+        <activity
+            android:name=".activity.jetpack.LiveDataActivity"
+            android:label="LiveData" />
+        <activity
+            android:name=".activity.filemanager.FileManagerActivity"
+            android:label="FileManager" />
         <activity
             android:name=".activity.jetpack.LifecycleActivity"
             android:label="Lifecycle" />
@@ -111,7 +114,6 @@
             android:process="com.cp" />
 
         <service android:name=".service.MyIntentService" />
-
     </application>
 
 </manifest>

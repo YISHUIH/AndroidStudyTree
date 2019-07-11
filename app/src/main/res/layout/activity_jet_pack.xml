@@ -26,6 +26,13 @@
             android:text="livedata"
 
             />
+        <Button
+            android:id="@+id/bt_data_banding"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="databanding"
+
+            />
     </LinearLayout>
 
 </LinearLayout>
