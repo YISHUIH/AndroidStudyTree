@@ -34,15 +34,16 @@ public class AsyncTaskActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_async_task);
         ButterKnife.bind(this);
-        stringBuffer=new StringBuffer();
+        stringBuffer = new StringBuffer();
 
         for (int i = 0; i < 5; i++) {
+//            new MyAsyncTask().executeOnExecutor(THREAD_POOL_EXECUTOR, new ArrayList());
             new MyAsyncTask().execute(new ArrayList());
         }
     }
 
 
-    public class MyAsyncTask extends AsyncTask<List, Integer, String> {
+    public class MyAsyncTask extends AsyncTask<List, String, String> {
         /**
          * 在doInBackground之前调用。运行在UI线程中
          * 一般做些初始化操作
@@ -60,18 +61,11 @@ public class AsyncTaskActivity extends AppCompatActivity {
          */
         @Override
         protected String doInBackground(List... list) {
-            int length = list.length;
-            for (int i = 0; i < length; i++) {
-                List list1 = list[i];
-                list1.add("你好");
-                //把当前进度转到onProgressUpdate，UI线程中
-                publishProgress(list1.size());
-            }
             StringBuffer stringBuffer = new StringBuffer();
             for (int i = 0; i < 5; i++) {
                 String s = "i:  " + i + "  threadName:  " + Thread.currentThread().getName();
                 stringBuffer.append(s + "\n");
-                Log.i("task", s);
+                publishProgress(s);
             }
 
             return stringBuffer.toString();
@@ -85,12 +79,13 @@ public class AsyncTaskActivity extends AppCompatActivity {
          * @param values
          */
         @Override
-        protected void onProgressUpdate(Integer... values) {
+        protected void onProgressUpdate(String... values) {
             super.onProgressUpdate(values);
             int length = values.length;
             for (int i = 0; i < length; i++) {
-//                Log.i("task", "values:  " + values[i] + "   i:" + i);
+                Log.i("task", values[i]);
             }
+
         }
 
         /**

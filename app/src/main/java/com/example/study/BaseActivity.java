@@ -1,5 +1,8 @@
 package com.example.study;
 
+import android.arch.lifecycle.Lifecycle;
+import android.arch.lifecycle.LifecycleOwner;
+import android.arch.lifecycle.LifecycleRegistry;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,14 +10,17 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
+import com.example.study.jetpack.TestLifecycle;
+
 /**
  * Copyright , 2015-2019 <br>
  * Author: 陈刘磊 1070379530@qq.com <br>
  * Date: 2019/6/18 14:35    <br>
- * Description: TODO 请输入此类的功能   <br>
+ * Description: BaseActivity  <br>
  */
 public class BaseActivity extends AppCompatActivity {
     protected String TAG = getClass().getSimpleName();
+
 
     public static void start(Context context, Class<? extends BaseActivity> c) {
         Intent starter = new Intent(context, c);
@@ -25,6 +31,7 @@ public class BaseActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         Log.i("life", TAG + "-----onCreate");
         super.onCreate(savedInstanceState);
+        getLifecycle().addObserver(new TestLifecycle());
     }
 
     @Override
@@ -43,12 +50,14 @@ public class BaseActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         Log.i("life", TAG + "-----onStart");
+
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         Log.i("life", TAG + "-----onResume");
+
     }
 
     @Override
@@ -67,5 +76,7 @@ public class BaseActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         Log.i("life", TAG + "-----onDestroy");
+
     }
+
 }

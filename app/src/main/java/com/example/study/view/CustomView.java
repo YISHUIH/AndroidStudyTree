@@ -169,6 +169,7 @@ public class CustomView extends View {
         if (mTitles.size() == 0) {
             return;
         }
+        //避免下标越界
         if (currentIndex < 0) {
             currentIndex = 0;
         }
@@ -339,9 +340,6 @@ public class CustomView extends View {
 
         if (v < 0) {
             //已经显示的是最后一条，禁止上滑
-            Log.e(TAG, "mCenterTextY:  " + mCenterTextY);
-            Log.e(TAG, "mCenterY:  " + mCenterY);
-            Log.e(TAG, "mCenterTextDefalutY:  " + mCenterTextDefalutY);
             if (mCenterTextY - mCenterY <= 0) {
                 mCenterTextDefalutY = mCenterY - ((mTitles.size() - 1) * textTotalHeight);
                 invalidate();
