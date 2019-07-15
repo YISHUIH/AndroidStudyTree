@@ -1,16 +1,11 @@
 package com.example.study;
 
-import android.arch.lifecycle.Lifecycle;
-import android.arch.lifecycle.LifecycleOwner;
-import android.arch.lifecycle.LifecycleRegistry;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-
-import com.example.study.jetpack.TestLifecycle;
 
 /**
  * Copyright , 2015-2019 <br>
@@ -31,7 +26,6 @@ public class BaseActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         Log.i("life", TAG + "-----onCreate");
         super.onCreate(savedInstanceState);
-        getLifecycle().addObserver(new TestLifecycle());
     }
 
     @Override

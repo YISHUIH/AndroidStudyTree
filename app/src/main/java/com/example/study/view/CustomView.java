@@ -109,6 +109,16 @@ public class CustomView extends View {
 
     }
 
+    @Override
+    public boolean post(Runnable action) {
+        return super.post(action);
+    }
+
+    @Override
+    public boolean postDelayed(Runnable action, long delayMillis) {
+        return super.postDelayed(action, delayMillis);
+    }
+
     public CustomView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init();

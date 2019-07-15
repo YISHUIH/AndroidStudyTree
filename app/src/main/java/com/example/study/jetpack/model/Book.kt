@@ -7,8 +7,8 @@ package com.example.study.jetpack.model
  * Description: Book实体类   <br>
  */
 class Book {
-    lateinit var name: String
-    lateinit var author: String
+    var name: String
+    var author: String
 
     constructor(name: String, author: String) {
         this.name = name

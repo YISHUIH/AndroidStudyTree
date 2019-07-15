@@ -15,7 +15,7 @@ import android.util.Log
  * Description: TestLiveData   <br>
  */
 class TestLiveData(val context: Context) : LiveData<Boolean>() {
-    private val TAG="TestLiveData";
+    val tag="TestLiveData"
 
     private val broadcastReceiver: BroadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
@@ -29,19 +29,20 @@ class TestLiveData(val context: Context) : LiveData<Boolean>() {
         }
     }
 
-    override fun onInactive() {
-        super.onInactive()
-        Log.e("life","      onInactive")
 
-        context.unregisterReceiver(broadcastReceiver)
-    }
 
     override fun onActive() {
         super.onActive()
-        Log.e("life",TAG+"      onActive")
+        Log.e("life", "$tag      onActive")
         val intentFilter = IntentFilter()
         intentFilter.addAction(ConnectivityManager.CONNECTIVITY_ACTION)
         context.registerReceiver(broadcastReceiver, intentFilter)
     }
 
+    override fun onInactive() {
+        super.onInactive()
+        Log.e("life","$tag      onInactive")
+
+        context.unregisterReceiver(broadcastReceiver)
+    }
 }

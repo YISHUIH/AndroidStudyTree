@@ -11,7 +11,7 @@ import android.util.Log;
  * Date: 2019/7/10 15:50    <br>
  * Description: TestLifecycle   <br>
  */
-public class TestLifecycle implements LifecycleObserver {
+public class TestLifecycleObserver implements LifecycleObserver {
     final String TAG = getClass().getSimpleName();
 
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)

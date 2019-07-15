@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".activity.jetpack.DataBandingActivity">
+    tools:context=".activity.jetpack.DataBindingActivity">
 
     <data>
 
@@ -23,12 +23,20 @@
         <TextView
             android:id="@+id/tv_name"
             android:layout_width="wrap_content"
-            android:text="@{Book.name}"
+            android:text='@{Book.name}'
             android:layout_height="wrap_content" />
         <TextView
             android:id="@+id/tv_author"
             android:layout_width="wrap_content"
-            android:text="@{Book.author}"
+            android:text='@{Book.author}'
             android:layout_height="wrap_content" />
+
+        <fragment
+            android:id="@+id/fa"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:name="com.example.study.fragment.ViewModelFragment"
+            />
     </LinearLayout>
 </layout>

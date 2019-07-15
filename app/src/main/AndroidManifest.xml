@@ -16,9 +16,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".activity.jetpack.DataBandingActivity"
-            android:label="DataBanding"
+        <activity android:name=".activity.jetpack.ViewModelActivity"
+            android:label="ViewModel"
             />
+        <activity
+            android:name=".activity.jetpack.DataBindingActivity"
+            android:label="DataBanding" />
         <activity
             android:name=".activity.jetpack.LiveDataActivity"
             android:label="LiveData" />
