@@ -16,12 +16,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".activity.jetpack.PagingActivity"
-            android:label="Paging"
+        <activity android:name=".activity.jetpack.RoomActivity"
+            android:label="Room"
             />
-        <activity android:name=".activity.jetpack.ViewModelActivity"
-            android:label="ViewModel"
-            />
+        <activity
+            android:name=".activity.jetpack.PagingActivity"
+            android:label="Paging" />
+        <activity
+            android:name=".activity.jetpack.ViewModelActivity"
+            android:label="ViewModel" />
         <activity
             android:name=".activity.jetpack.DataBindingActivity"
             android:label="DataBanding" />

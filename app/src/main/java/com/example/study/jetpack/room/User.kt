@@ -1,0 +1,29 @@
+package com.example.study.jetpack.room
+
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+/**
+ * Copyright , 2015-2019,  <br>
+ * Author: 陈刘磊 1070379530@qq.com <br>
+ * Date: 2019/7/15 16:18    <br>
+ * Description: User   <br>
+ */
+@Entity
+class User {
+    @PrimaryKey(autoGenerate = true)
+    public var id: Int = 0
+    @ColumnInfo
+    public lateinit var name: String
+
+    constructor(name: String) {
+        this.name = name
+    }
+
+    override fun toString(): String {
+        return "User(id=$id, name='$name')"
+    }
+
+
+}

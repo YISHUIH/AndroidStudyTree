@@ -1,6 +1,6 @@
 package com.example.study.activity.custom_view;
 
-import android.arch.lifecycle.Lifecycle;
+import androidx.lifecycle.Lifecycle;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
