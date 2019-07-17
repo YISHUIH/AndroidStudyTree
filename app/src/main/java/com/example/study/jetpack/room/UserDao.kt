@@ -1,5 +1,6 @@
 package com.example.study.jetpack.room
 
+import androidx.paging.DataSource
 import androidx.room.*
 
 
@@ -28,5 +29,8 @@ interface UserDao {
 
     @Query("update user set name =:name1 where id=:id")
     fun updateCustom(name1: String, id: Int)
+
+    @Query("Select * from user order by id")
+    fun getAllUser():DataSource.Factory<Int,User>
 
 }

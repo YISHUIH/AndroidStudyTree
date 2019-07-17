@@ -18,7 +18,7 @@ class UserController {
 
         //本类对象
         var userController: UserController? = null
-        var userDataBase: UserDataBase? = null
+        lateinit var userDataBase: UserDataBase
         var userLiveData: UserLiveData? = null
 
         @Synchronized
