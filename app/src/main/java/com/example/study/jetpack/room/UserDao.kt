@@ -1,6 +1,5 @@
 package com.example.study.jetpack.room
 
-import android.content.Context
 import androidx.room.*
 
 
@@ -30,10 +29,4 @@ interface UserDao {
     @Query("update user set name =:name1 where id=:id")
     fun updateCustom(name1: String, id: Int)
 
-    companion object {
-         fun getUserDataBase(context: Context): UserDataBase {
-
-            return Room.databaseBuilder(context, UserDataBase::class.java, "User").build()
-        }
-    }
 }

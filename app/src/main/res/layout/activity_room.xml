@@ -41,7 +41,7 @@
         android:layout_width="wrap_content"
         android:minWidth="200dp"
         android:layout_height="wrap_content"
-        android:hint="输入内容"
+        android:hint="输入内容后再操作吧"
         />
     
     <TextView
