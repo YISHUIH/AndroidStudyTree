@@ -2,59 +2,67 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:layout_height="match_parent">
-<LinearLayout
-    android:layout_width="match_parent"
-    android:orientation="horizontal"
-    android:layout_height="50dp">
-    <Button
-        android:id="@+id/zj"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:text="四大组件"
-        />
-    <Button
-        android:id="@+id/thread"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:text="线程并发"
-        />
-    <Button
-        android:id="@+id/bitmap"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:text="Bitmap"
-        />
-    <Button
-        android:id="@+id/android_Q"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Android_Q"
-        />
-</LinearLayout>
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:layout_height="50dp">
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/zj"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="四大组件" />
+
+        <Button
+            android:id="@+id/thread"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="线程并发" />
+
+        <Button
+            android:id="@+id/bitmap"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Bitmap" />
+
+        <Button
+            android:id="@+id/android_Q"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Android_Q" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+
         <Button
             android:id="@+id/view"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="View"
-            />
+            android:text="View" />
+
         <Button
             android:id="@+id/jet_pack"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="JetPack"
-            />
+            android:text="JetPack" />
+
         <Button
             android:id="@+id/file_manager"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="文件管理器"
-            />
+            android:text="文件管理器" />
+
+        <Button
+            android:id="@+id/retrofit"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="retrofit" />
     </LinearLayout>
 
 </LinearLayout>

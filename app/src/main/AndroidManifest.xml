@@ -16,9 +16,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".activity.jetpack.RoomActivity"
-            android:label="Room"
+        <activity android:name=".activity.RetrofitActivity"
+            android:label="Retrofit"
             />
+        <activity
+            android:name=".activity.jetpack.RoomActivity"
+            android:label="Room" />
         <activity
             android:name=".activity.jetpack.PagingActivity"
             android:label="Paging" />
