@@ -11,13 +11,12 @@ import com.example.study.entity.RepositorySearchBean
  * Date: 2019/7/22 16:03    <br>
  * Description: RepositorySearchDataScoureFactory   <br>
  */
-class RepositorySearchDataScoureFactory : DataSource.Factory<Int, RepositorySearchBean>() {
+class RepositorySearchDataScoureFactory(content:String?) : DataSource.Factory<Int, RepositorySearchBean.ItemsBean?>() {
+    var content=content
     private val mSourceLiveData = MutableLiveData<RepositorySearchDataScoure>()
-    override fun create(): DataSource<Int, RepositorySearchBean> {
-        var repositorySearchDataScoure = RepositorySearchDataScoure()
+    override fun create(): DataSource<Int, RepositorySearchBean.ItemsBean?> {
+        var repositorySearchDataScoure = RepositorySearchDataScoure(content)
         mSourceLiveData.postValue(repositorySearchDataScoure)
-        return repositorySearchDataScoure as DataSource<Int, RepositorySearchBean>
-
-
+        return repositorySearchDataScoure
     }
 }

@@ -85,7 +85,7 @@ class UserController {
     class InsertAsyncTask : AsyncTask<User, Int, User>() {
         override fun doInBackground(vararg params: User): User {
             Log.e("DB", "doInBackground")
-            UserController.userDataBase!!.getUserDao().insertAll(params[0])
+            UserController.userDataBase.getUserDao().insertAll(params[0])
             return params[0]
         }
 
@@ -107,8 +107,8 @@ class UserController {
         override fun doInBackground(vararg params: User): ArrayList<User> {
             Log.e("DB", "doInBackground")
             var list = ArrayList<User>()
-            var l = UserController.userDataBase?.getUserDao()?.all
-            list.addAll(l as List)
+            var l = UserController.userDataBase.getUserDao().all
+            list.addAll(l)
             return list
         }
 
@@ -129,10 +129,10 @@ class UserController {
     class DeleteAsyncTask : AsyncTask<User, Int, ArrayList<User>>() {
         override fun doInBackground(vararg params: User): ArrayList<User> {
             Log.e("DB", "doInBackground")
-            UserController.userDataBase?.getUserDao()?.delete(params[0])
+            UserController.userDataBase.getUserDao().delete(params[0])
             var list = ArrayList<User>()
-            var l = UserController.userDataBase?.getUserDao()?.all
-            list.addAll(l as List)
+            var l = UserController.userDataBase.getUserDao().all
+            list.addAll(l)
             return list
         }
 
@@ -152,10 +152,10 @@ class UserController {
     class UpDateAsyncTask : AsyncTask<User, Int, ArrayList<User>>() {
         override fun doInBackground(vararg params: User): ArrayList<User> {
             Log.e("DB", "doInBackground")
-            UserController.userDataBase?.getUserDao()?.update(params[0])
+            UserController.userDataBase.getUserDao().update(params[0])
             var list = ArrayList<User>()
-            var l = UserController.userDataBase?.getUserDao()?.all
-            list.addAll(l as List)
+            var l = UserController.userDataBase.getUserDao().all
+            list.addAll(l)
             return list
         }
 

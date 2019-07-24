@@ -43,7 +43,6 @@ class PagingActivity : BaseActivity(), View.OnClickListener {
         userController = UserController.getUserControllerIns(applicationContext)
         UserController.userLiveData?.observe(this, Observer {
             userList = it
-
         })
 
         rv.layoutManager = LinearLayoutManager(this)

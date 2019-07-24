@@ -23,7 +23,7 @@ class TestViewModel : ViewModel() {
 
         fun action(book: Book?) {
             //本线程中执行
-//            value = book ?: Book("猴子", "无敌大狒狒")
+            //value = book ?: Book("猴子", "无敌大狒狒")
 
             //将结果发送到主线程中
             postValue(book)

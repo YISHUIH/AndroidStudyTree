@@ -1,6 +1,11 @@
 package com.example.study.entity;
 
+import android.widget.ImageView;
+
 import androidx.annotation.Nullable;
+import androidx.databinding.BindingAdapter;
+
+import com.bumptech.glide.Glide;
 
 import java.util.List;
 
@@ -39,7 +44,7 @@ public class RepositorySearchBean {
         this.total_count = total_count;
     }
 
-     
+
     public boolean isIncomplete_results() {
         return incomplete_results;
     }
@@ -48,7 +53,7 @@ public class RepositorySearchBean {
         this.incomplete_results = incomplete_results;
     }
 
-     
+
     public List<ItemsBean> getItems() {
         return items;
     }
@@ -149,9 +154,10 @@ public class RepositorySearchBean {
         private int id;
         private String node_id;
         private String full_name;
+        private String description;
         private OwnerBean owner;
 
-         
+
         public int getId() {
             return id;
         }
@@ -160,7 +166,7 @@ public class RepositorySearchBean {
             this.id = id;
         }
 
-         
+
         public String getNode_id() {
             return node_id;
         }
@@ -169,7 +175,7 @@ public class RepositorySearchBean {
             this.node_id = node_id;
         }
 
-         
+
         public String getFull_name() {
             return full_name;
         }
@@ -178,7 +184,7 @@ public class RepositorySearchBean {
             this.full_name = full_name;
         }
 
-         
+
         public OwnerBean getOwner() {
             return owner;
         }
@@ -187,13 +193,21 @@ public class RepositorySearchBean {
             this.owner = owner;
         }
 
-        public static class OwnerBean  {
+        public String getDescription() {
+            return description;
+        }
+
+        public void setDescription(String description) {
+            this.description = description;
+        }
+
+        public static class OwnerBean {
             /**
              * login : JakeWharton
              * id : 66577
              * node_id : MDQ6VXNlcjY2NTc3
              * avatar_url : https://avatars0.githubusercontent.com/u/66577?v=4
-             * gravatar_id : 
+             * gravatar_id :
              * url : https://api.github.com/users/JakeWharton
              * html_url : https://github.com/JakeWharton
              * followers_url : https://api.github.com/users/JakeWharton/followers
@@ -217,8 +231,13 @@ public class RepositorySearchBean {
             private String received_events_url;
             private String type;
             private boolean site_admin;
+            private String avatar_url;
 
-             
+            @BindingAdapter("imageUrl")
+            public static void loadImage(ImageView imageView, String url) {
+                Glide.with(imageView).load(url).into(imageView);
+            }
+
             public String getLogin() {
                 return login;
             }
@@ -227,7 +246,7 @@ public class RepositorySearchBean {
                 this.login = login;
             }
 
-             
+
             public int getId() {
                 return id;
             }
@@ -236,7 +255,7 @@ public class RepositorySearchBean {
                 this.id = id;
             }
 
-             
+
             public String getNode_id() {
                 return node_id;
             }
@@ -245,7 +264,7 @@ public class RepositorySearchBean {
                 this.node_id = node_id;
             }
 
-             
+
             public String getUrl() {
                 return url;
             }
@@ -254,7 +273,7 @@ public class RepositorySearchBean {
                 this.url = url;
             }
 
-             
+
             public String getHtml_url() {
                 return html_url;
             }
@@ -263,7 +282,7 @@ public class RepositorySearchBean {
                 this.html_url = html_url;
             }
 
-             
+
             public String getReceived_events_url() {
                 return received_events_url;
             }
@@ -272,7 +291,7 @@ public class RepositorySearchBean {
                 this.received_events_url = received_events_url;
             }
 
-             
+
             public String getType() {
                 return type;
             }
@@ -281,7 +300,7 @@ public class RepositorySearchBean {
                 this.type = type;
             }
 
-             
+
             public boolean isSite_admin() {
                 return site_admin;
             }
@@ -289,9 +308,17 @@ public class RepositorySearchBean {
             public void setSite_admin(boolean site_admin) {
                 this.site_admin = site_admin;
             }
+
+            public String getAvatar_url() {
+                return avatar_url;
+            }
+
+            public void setAvatar_url(String avatar_url) {
+                this.avatar_url = avatar_url;
+            }
         }
 
-        public static class LicenseBean  {
+        public static class LicenseBean {
             /**
              * key : apache-2.0
              * name : Apache License 2.0
@@ -306,7 +333,7 @@ public class RepositorySearchBean {
             private String url;
             private String node_id;
 
-             
+
             public String getKey() {
                 return key;
             }
@@ -315,7 +342,7 @@ public class RepositorySearchBean {
                 this.key = key;
             }
 
-             
+
             public String getName() {
                 return name;
             }
@@ -324,7 +351,7 @@ public class RepositorySearchBean {
                 this.name = name;
             }
 
-             
+
             public String getSpdx_id() {
                 return spdx_id;
             }
@@ -333,7 +360,7 @@ public class RepositorySearchBean {
                 this.spdx_id = spdx_id;
             }
 
-             
+
             public String getUrl() {
                 return url;
             }
@@ -342,7 +369,7 @@ public class RepositorySearchBean {
                 this.url = url;
             }
 
-             
+
             public String getNode_id() {
                 return node_id;
             }

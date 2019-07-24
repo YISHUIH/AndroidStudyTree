@@ -16,6 +16,6 @@ interface RequestRepositorySearch {
     /**
      * search/repositories?q="ButterKnife"&page=1&per_page=1
      */
-    @GET("search/repositories?q={@name}&page=1&per_page=10")
-    fun request(@Query("name") name: String): Call<RepositorySearchBean>
+    @GET("search/repositories?per_page=10")
+    fun request(@Query("q") name: String?,@Query("page") index:Int): Call<RepositorySearchBean>
 }

@@ -14,7 +14,11 @@ import com.example.study.entity.RepositorySearchBean
  * Description:   <br>
  */
 class RepositorySearchViewModel : ViewModel() {
-   
+    var livaData = LivePagedListBuilder(RepositorySearchDataScoureFactory(null), PagedList.Config.Builder().setPrefetchDistance(2).build()).build()
+
+    fun s(content:String): LiveData<PagedList<RepositorySearchBean.ItemsBean?>> {
+        return LivePagedListBuilder(RepositorySearchDataScoureFactory(content), PagedList.Config.Builder().setPrefetchDistance(2).build()).build()
+    }
 
 
 }
