@@ -64,5 +64,21 @@
             android:layout_height="match_parent"
             android:text="retrofit" />
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
 
+        <Button
+            android:id="@+id/keep_process_alive"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="进程保活" />
+
+        <Button
+            android:id="@+id/spannable_string"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="spannablestring" />
+    </LinearLayout>
 </LinearLayout>

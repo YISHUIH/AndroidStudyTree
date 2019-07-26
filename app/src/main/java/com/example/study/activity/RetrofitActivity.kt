@@ -33,7 +33,7 @@ class RetrofitActivity : BaseActivity(), View.OnClickListener {
 
 
     private lateinit var api: RequestRepositorySearch
-    val viewModel by lazy {
+    val viewModel by lazy(mode = LazyThreadSafetyMode.SYNCHRONIZED) {
         ViewModelProviders.of(this).get(RepositorySearchViewModel::class.java)
     }
 

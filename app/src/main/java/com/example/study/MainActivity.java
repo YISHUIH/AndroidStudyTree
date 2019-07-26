@@ -48,19 +48,13 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
         BottomNavigationView navView = findViewById(R.id.nav_view);
         vp = findViewById(R.id.vp);
+        vp.setNoScroll(true);
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         fragmentList = new ArrayList<>();
         fragmentList.add(AndroidFragment.newInstance());
         fragmentList.add(JavaFragment.newInstance());
         fragmentList.add(OtherFragment.newInstance());
         vp.setAdapter(new MyVPAdapter(getSupportFragmentManager()));
-
-        Thread thread = new Thread();
-        try {
-            thread.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 
 

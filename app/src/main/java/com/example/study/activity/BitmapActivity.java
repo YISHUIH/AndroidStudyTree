@@ -13,7 +13,9 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.example.study.BaseActivity;
 import com.example.study.R;
+import com.example.study.activity.bitmap.CustomDrawableActivity;
 import com.example.study.activity.bitmap.LargeBitmapActivity;
+import com.example.study.activity.custom_view.CustomViewActivity;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -88,7 +90,7 @@ public class BitmapActivity extends BaseActivity {
     }
 
 
-    @OnClick({R.id.bt_ys, R.id.glide,R.id.largeBitmap})
+    @OnClick({R.id.bt_ys, R.id.glide,R.id.largeBitmap,R.id.custom_drawable})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.bt_ys:
@@ -99,6 +101,9 @@ public class BitmapActivity extends BaseActivity {
                 break;
             case R.id.largeBitmap:
                 LargeBitmapActivity.start(this);
+                break;
+            case R.id.custom_drawable:
+                CustomDrawableActivity.Companion.start(this);
                 break;
             default:
         }

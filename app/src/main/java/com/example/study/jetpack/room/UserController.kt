@@ -11,7 +11,7 @@ import androidx.lifecycle.LiveData
  * Date: 2019/7/16 11:15    <br>
  * Description: 数据库的操作类  <br>
  */
-class UserController {
+class UserController private constructor() {
 
 
     companion object {
@@ -78,7 +78,7 @@ class UserController {
     }
 
     fun upDate(user: User) {
-        UpDateAsyncTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,user)
+        UpDateAsyncTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, user)
     }
 
 

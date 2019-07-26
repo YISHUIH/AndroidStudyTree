@@ -30,6 +30,12 @@
             android:layout_height="match_parent"
             android:text="显示大图"
             />
+        <Button
+            android:id="@+id/custom_drawable"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="自定义Drawable"
+            />
     </LinearLayout>
 
     <ImageView

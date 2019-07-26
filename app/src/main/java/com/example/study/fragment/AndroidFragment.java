@@ -1,23 +1,28 @@
 package com.example.study.fragment;
 
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
 import com.example.study.R;
 import com.example.study.activity.AndroidForQActivity;
 import com.example.study.activity.BitmapActivity;
 import com.example.study.activity.JetPackActivity;
+import com.example.study.activity.KeepProcessAliveActivity;
 import com.example.study.activity.RetrofitActivity;
+import com.example.study.activity.SpannableStringActivity;
 import com.example.study.activity.ThreadActivity;
 import com.example.study.activity.ViewStudyActivity;
 import com.example.study.activity.ZJActivity;
 import com.example.study.activity.filemanager.FileManagerActivity;
+
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -62,7 +67,7 @@ public class AndroidFragment extends Fragment {
     }
 
 
-    @OnClick({R.id.zj, R.id.thread,R.id.bitmap,R.id.android_Q,R.id.view,R.id.jet_pack,R.id.file_manager,R.id.retrofit})
+    @OnClick({R.id.zj, R.id.thread, R.id.bitmap, R.id.android_Q, R.id.view, R.id.jet_pack, R.id.file_manager, R.id.retrofit, R.id.keep_process_alive, R.id.spannable_string})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.zj:
@@ -81,13 +86,19 @@ public class AndroidFragment extends Fragment {
                 ViewStudyActivity.start(getActivity());
                 break;
             case R.id.jet_pack:
-                JetPackActivity.Companion.start(getActivity());
+                JetPackActivity.Companion.start(Objects.requireNonNull(getActivity()));
                 break;
             case R.id.file_manager:
                 FileManagerActivity.start(getActivity());
                 break;
             case R.id.retrofit:
-                RetrofitActivity.Companion.start(getActivity());
+                RetrofitActivity.Companion.start(Objects.requireNonNull(getActivity()));
+                break;
+            case R.id.keep_process_alive:
+                KeepProcessAliveActivity.Companion.start(Objects.requireNonNull(getActivity()));
+                break;
+            case R.id.spannable_string:
+                SpannableStringActivity.Companion.start(Objects.requireNonNull(getActivity()));
                 break;
             default:
         }

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.KeepProcessAliveActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/avoid_killed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="防止被杀死" />
+
+        <Button
+            android:id="@+id/killed_relive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="被杀死后重启" />
+    </LinearLayout>
+</LinearLayout>

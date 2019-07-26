@@ -16,9 +16,27 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".activity.RetrofitActivity"
-            android:label="Retrofit"
+        <activity android:name=".activity.SpannableStringActivity"
+            android:label="SpannableString"
+            android:exported="true"
             />
+        <activity
+            android:name=".activity.bitmap.CustomDrawableActivity"
+            android:exported="true"
+            android:label="CustomDrawable" />
+        <activity android:name=".activity.processkeeplive.OnePixelActivity" />
+        <activity
+            android:name=".activity.processkeeplive.KilledReliveActivity"
+            android:label="杀死后重启" />
+        <activity
+            android:name=".activity.processkeeplive.AvoidKilledActivity"
+            android:label="防止被杀死" />
+        <activity
+            android:name=".activity.KeepProcessAliveActivity"
+            android:label="进程保活" />
+        <activity
+            android:name=".activity.RetrofitActivity"
+            android:label="Retrofit" />
         <activity
             android:name=".activity.jetpack.RoomActivity"
             android:label="Room" />
