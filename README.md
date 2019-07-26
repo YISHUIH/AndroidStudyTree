@@ -42,7 +42,7 @@ android 、JetPack、java、网络、性能优化、数据库、
   1. MediaStore
  
 - **AndroidQ**
-  1.app_specifice 应用内文件访问路径
+  1. app_specifice 应用内文件访问路径
   
 - **TestSpannableStringUtil**
-  适用于搜索改变指定内容颜色
+  1. 适用于搜索改变指定内容颜色
