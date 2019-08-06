@@ -24,3 +24,25 @@ android 、JetPack、java、网络、性能优化、数据库、
   2. Bitmap压缩
   3. Bitmap像素配置
   4. BitmapRegionDecoder展示长图、大图。
+  
+- **View**
+  1. 事件分发
+  2. view绘制流程
+  3. 自定义view
+
+- **JetPack**
+  1. Lifecycle
+  2. liveData
+  3. DataBinding
+  4. ViewModel
+  5. Room
+  6. Paging
+  
+- **文件管理**
+  1. MediaStore
+ 
+- **AndroidQ**
+  1. app_specifice 应用内文件访问路径
+  
+- **TestSpannableStringUtil**
+  1. 适用于搜索改变指定内容颜色
