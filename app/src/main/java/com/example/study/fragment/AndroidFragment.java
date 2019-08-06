@@ -21,6 +21,7 @@ import com.example.study.activity.ThreadActivity;
 import com.example.study.activity.ViewStudyActivity;
 import com.example.study.activity.ZJActivity;
 import com.example.study.activity.filemanager.FileManagerActivity;
+import com.example.study.activity.html.HtmlActivity;
 import com.example.study.activity.ui.ViewStubActivity;
 
 import java.util.Objects;
@@ -68,7 +69,7 @@ public class AndroidFragment extends Fragment {
     }
 
 
-    @OnClick({R.id.zj, R.id.thread, R.id.bitmap, R.id.android_Q, R.id.view, R.id.jet_pack, R.id.file_manager, R.id.retrofit, R.id.keep_process_alive, R.id.spannable_string, R.id.view_sub})
+    @OnClick({R.id.zj, R.id.thread, R.id.bitmap, R.id.android_Q, R.id.view, R.id.jet_pack, R.id.file_manager, R.id.retrofit, R.id.keep_process_alive, R.id.spannable_string, R.id.view_sub,R.id.html})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.zj:
@@ -103,6 +104,9 @@ public class AndroidFragment extends Fragment {
                 break;
             case R.id.view_sub:
                 ViewStubActivity.Companion.start(Objects.requireNonNull(getActivity()));
+                break;
+            case R.id.html:
+                HtmlActivity.Companion.start(Objects.requireNonNull(getActivity()));
                 break;
             default:
         }

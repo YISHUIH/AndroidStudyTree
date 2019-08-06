@@ -16,9 +16,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".activity.ui.ViewStubActivity"
-            android:label="ViewSub"
+        <activity android:name=".activity.html.HtmlActivity"
+            android:label="与H5交互"
             />
+        <activity
+            android:name=".activity.ui.ViewStubActivity"
+            android:label="ViewSub" />
         <activity
             android:name=".activity.custom_view.CustomViewGroupActivity"
             android:exported="true"

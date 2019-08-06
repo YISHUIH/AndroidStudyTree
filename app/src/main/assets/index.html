@@ -1,0 +1,66 @@
+<!DOCTYPE  html>
+
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title></title>
+
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+
+    <link href="../css/mui.min.css" rel="stylesheet" />
+
+    <link href="../css/common.css" rel="stylesheet" />
+
+    <script src="../js/mui.min.js"></script>
+
+    <script type="text/javascript">
+
+        mui.init()
+
+    </script>
+
+</head>
+
+<body>
+<!--头部-->
+<header class="mui-bar mui-bar-nav" id="header">
+    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+    <h1 class="mui-title">AndroidToH5</h1>
+</header>
+<div class="mui-content">
+
+    <button onclick="s()">点击调用本地方法</button>
+
+    <p id="p" style="padding: 10px;">显示结果</p>
+
+    <script type="text/javascript">
+    //Android调用：有参返回值的方法
+    function sum(a,b){
+        return a+b;
+    }
+
+    //Android调用：有参无返回值的方法
+    function alertMessage(message){
+        alert(message);
+    }
+    //Android调用：无参无返回值的方法
+    function show(){
+        //显示hello world
+        document.getElementById("p").innerHTML="hello world";
+    }
+    //H5 JS调用源生方法
+    function s() {
+        //android为约定的别名(别名也可以自己定义，保持一致就好)；
+        //back()为原生的方法，方法名自己定保持一致就好
+        var result=window.android.back();
+        //将返回结果显示在id为p的控件上
+        document.getElementById("p").innerHTML=result;
+    }
+    </script>
+</div>
+
+
+</body>
