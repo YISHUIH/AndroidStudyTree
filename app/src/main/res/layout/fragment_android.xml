@@ -80,5 +80,10 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="spannablestring" />
+        <Button
+            android:id="@+id/view_sub"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="ViewSub" />
     </LinearLayout>
 </LinearLayout>

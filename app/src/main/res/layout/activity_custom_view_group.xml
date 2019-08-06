@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.custom_view.CustomViewGroupActivity">
+
+    <com.example.study.view.CustomViewGroup
+        android:id="@+id/mViewGroup"
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/bt1"
+            android:layout_width="50dp"
+            android:layout_height="200dp"
+            android:background="@color/colorPrimary" />
+
+       <TextView
+            android:id="@+id/bt2"
+            android:layout_width="50dp"
+            android:layout_height="200dp"
+            android:background="@color/colorAccent" />
+
+
+        <TextView
+            android:id="@+id/bt3"
+            android:layout_width="50dp"
+            android:layout_height="200dp"
+            android:background="@color/green" />
+
+        <TextView
+            android:id="@+id/bt4"
+            android:layout_width="50dp"
+            android:layout_height="200dp"
+            android:background="@color/black" />
+
+        <TextView
+            android:id="@+id/bt5"
+            android:layout_width="50dp"
+            android:layout_height="200dp"
+            android:background="@color/colorAccent" />
+
+
+    </com.example.study.view.CustomViewGroup>
+</LinearLayout>

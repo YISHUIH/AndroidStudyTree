@@ -4,25 +4,28 @@ import android.graphics.Color;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
+import android.text.style.CharacterStyle;
 import android.text.style.ForegroundColorSpan;
 
 /**
  * 改变文本部分颜色
  */
-public class TextSpannableStringUtile {
+public class TextSpannableStringUtil {
 
     /**
      * 获得搜索后变色的文本
-     *
+     *<b/>
+     * 改变第一个目标颜色
      * @param currentText 原始文本
      * @param colorText   要变色部分
-     * @param color       变色颜色
+     * @param colorSpan   文本风格  默认 ForegroundColorSpan(Color.GREEN);
      * @return 变色后的文本
      */
-    public static SpannableString changeFirstTagColor(CharSequence currentText, String colorText, int color) {
+    public static SpannableString changeFirstTagColor(CharSequence currentText, String colorText, CharacterStyle colorSpan) {
         SpannableString spannableString = new SpannableString(currentText);
-        ForegroundColorSpan colorSpan = new ForegroundColorSpan(color);
-
+        if (colorSpan==null){
+            colorSpan=new ForegroundColorSpan(Color.GREEN);
+        }
 
         int start = 0;
         if (colorText != null && colorText.length() > 0) {
@@ -39,14 +42,27 @@ public class TextSpannableStringUtile {
     }
 
     /**
-     * @param currentText 始文本
-     * @param colorText   要变色部分
-     * @param colorString 变色颜色
-     * @return 变色后的文本
+     * 每次都会new一个新的ForegroundColorSpan
+     * @param currentText
+     * @param colorText
+     * @param color
+     * @return
      */
-    public static SpannableString changeFirstTagColor(String currentText, String colorText, String colorString) {
+    public static SpannableString changeFirstTagColor(CharSequence currentText, String colorText, int color) {
+        SpannableString spannableString = new SpannableString(currentText);
+        CharacterStyle colorSpan=new ForegroundColorSpan(color);
 
-        return changeFirstTagColor(currentText, colorText, Color.parseColor(colorString));
+        int start = 0;
+        if (colorText != null && colorText.length() > 0) {
+            start = ((String) currentText).indexOf(colorText);
+        }
+
+        //存在目标text变色
+        if (start >= 0) {
+            spannableString.setSpan(colorSpan, start, start + colorText.length(), Spanned.SPAN_COMPOSING);
+        }
+
+        return spannableString;
 
     }
 
@@ -62,7 +78,6 @@ public class TextSpannableStringUtile {
         SpannableStringBuilder builder = new SpannableStringBuilder();
         String[] split = currentText.split(colorText);
         for (String s : split) {
-
             if ((s.length() + builder.length()) == currentText.length()) {
                 //如果已经到了最后，不需要在添加colorText
                 //生成一个新的currentText
@@ -71,7 +86,6 @@ public class TextSpannableStringUtile {
                 //生成一个新的currentText
                 builder.append(changeFirstTagColor(s + colorText, colorText, color));
             }
-
 
         }
 
@@ -86,36 +100,15 @@ public class TextSpannableStringUtile {
     }
 
     /**
-     * 改变所有能找到的所有文本内容
-     *
-     * @param currentText
-     * @param colorText
-     * @param colorString
-     * @return
-     */
-    public static SpannableStringBuilder changeAllTagColor(String currentText, String colorText, String colorString) {
-        return changeAllTagColor(currentText, colorText, Color.parseColor(colorString));
-    }
-
-    /**
      * 改变整个文本的颜色
      *
      * @param currentText
-     * @param color
+     * @param colorSpan
      * @return
      */
-    public static SpannableString changeAllTextColor(String currentText, int color) {
-        return changeFirstTagColor(currentText, currentText, color);
+    public static SpannableString changeAllTextColor(String currentText ,CharacterStyle colorSpan) {
+        return changeFirstTagColor(currentText, currentText, colorSpan);
     }
 
-    /**
-     * 改变整个文本颜色
-     *
-     * @param currentText
-     * @param colorString
-     * @return
-     */
-    public static SpannableString changeAllTextColor(String currentText, String colorString) {
-        return changeAllTextColor(currentText, Color.parseColor(colorString));
-    }
+
 }

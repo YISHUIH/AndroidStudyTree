@@ -9,6 +9,7 @@ import android.widget.Button;
 import com.example.study.BaseActivity;
 import com.example.study.R;
 import com.example.study.activity.custom_view.CustomViewActivity;
+import com.example.study.activity.custom_view.CustomViewGroupActivity;
 import com.example.study.activity.custom_view.ViewTouchActivity;
 
 import butterknife.BindView;
@@ -46,6 +47,7 @@ public class ViewStudyActivity extends BaseActivity {
                 CustomViewActivity.start(this);
                 break;
             case R.id.viewgroup:
+                CustomViewGroupActivity.Companion.start(this);
                 break;
             default:
         }

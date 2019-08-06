@@ -59,7 +59,7 @@ public class FileManagerActivity extends BaseActivity {
 //            String img_path = actualimagecursor.getString(actual_image_column_index);
 //
 //            File file = new File(img_path);
-//            path.setText(file.getAbsolutePath());
+//            leftPath.setText(file.getAbsolutePath());
 //            Toast.makeText(this, file.toString(), Toast.LENGTH_SHORT).show();
 //            actualimagecursor.close();
             String s = GetPathFromUri.getPath(this, uri);

@@ -16,13 +16,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".activity.SpannableStringActivity"
-            android:label="SpannableString"
-            android:exported="true"
+        <activity android:name=".activity.ui.ViewStubActivity"
+            android:label="ViewSub"
             />
         <activity
-            android:name=".activity.bitmap.CustomDrawableActivity"
+            android:name=".activity.custom_view.CustomViewGroupActivity"
             android:exported="true"
+            android:label="CustomViewGroup" />
+        <activity
+            android:name=".activity.SpannableStringActivity"
+            android:label="SpannableString" />
+        <activity
+            android:name=".activity.bitmap.CustomDrawableActivity"
             android:label="CustomDrawable" />
         <activity android:name=".activity.processkeeplive.OnePixelActivity" />
         <activity
