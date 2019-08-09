@@ -137,6 +137,7 @@ public class ShowLargeBitmap extends View {
         mBitmap = mDecoder.decodeRegion(mRect, mOptions);
 
         canvas.drawBitmap(mBitmap, mMatrix, null);
+
     }
 
     /**

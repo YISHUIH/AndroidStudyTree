@@ -5,7 +5,7 @@
     android:id="@+id/cl"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.bitmap.CustomDrawableActivity">
+    tools:context=".activity.android.bitmap.CustomDrawableActivity">
 <SeekBar
     android:id="@+id/pb"
     android:layout_margin="16dp"

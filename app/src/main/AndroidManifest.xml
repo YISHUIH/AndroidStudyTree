@@ -16,109 +16,111 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".activity.html.HtmlActivity"
-            android:label="与H5交互"
-            />
+        <activity android:name=".activity.java.PXSFActivity"></activity>
+        <activity android:name=".activity.java.SJSFActivity" />
         <activity
-            android:name=".activity.ui.ViewStubActivity"
+            android:name=".activity.android.html.HtmlActivity"
+            android:label="与H5交互" />
+        <activity
+            android:name=".activity.android.ui.ViewStubActivity"
             android:label="ViewSub" />
         <activity
-            android:name=".activity.custom_view.CustomViewGroupActivity"
+            android:name=".activity.android.custom_view.CustomViewGroupActivity"
             android:exported="true"
             android:label="CustomViewGroup" />
         <activity
-            android:name=".activity.SpannableStringActivity"
+            android:name=".activity.android.SpannableStringActivity"
             android:label="SpannableString" />
         <activity
-            android:name=".activity.bitmap.CustomDrawableActivity"
+            android:name=".activity.android.bitmap.CustomDrawableActivity"
             android:label="CustomDrawable" />
-        <activity android:name=".activity.processkeeplive.OnePixelActivity" />
+        <activity android:name=".activity.android.processkeeplive.OnePixelActivity" />
         <activity
-            android:name=".activity.processkeeplive.KilledReliveActivity"
+            android:name=".activity.android.processkeeplive.KilledReliveActivity"
             android:label="杀死后重启" />
         <activity
-            android:name=".activity.processkeeplive.AvoidKilledActivity"
+            android:name=".activity.android.processkeeplive.AvoidKilledActivity"
             android:label="防止被杀死" />
         <activity
-            android:name=".activity.KeepProcessAliveActivity"
+            android:name=".activity.android.KeepProcessAliveActivity"
             android:label="进程保活" />
         <activity
-            android:name=".activity.RetrofitActivity"
+            android:name=".activity.android.RetrofitActivity"
             android:label="Retrofit" />
         <activity
-            android:name=".activity.jetpack.RoomActivity"
+            android:name=".activity.android.jetpack.RoomActivity"
             android:label="Room" />
         <activity
-            android:name=".activity.jetpack.PagingActivity"
+            android:name=".activity.android.jetpack.PagingActivity"
             android:label="Paging" />
         <activity
-            android:name=".activity.jetpack.ViewModelActivity"
+            android:name=".activity.android.jetpack.ViewModelActivity"
             android:label="ViewModel" />
         <activity
-            android:name=".activity.jetpack.DataBindingActivity"
+            android:name=".activity.android.jetpack.DataBindingActivity"
             android:label="DataBanding" />
         <activity
-            android:name=".activity.jetpack.LiveDataActivity"
+            android:name=".activity.android.jetpack.LiveDataActivity"
             android:label="LiveData" />
         <activity
-            android:name=".activity.filemanager.FileManagerActivity"
+            android:name=".activity.android.filemanager.FileManagerActivity"
             android:label="FileManager" />
         <activity
-            android:name=".activity.jetpack.LifecycleActivity"
+            android:name=".activity.android.jetpack.LifecycleActivity"
             android:label="Lifecycle" />
         <activity
-            android:name=".activity.JetPackActivity"
+            android:name=".activity.android.JetPackActivity"
             android:label="JetPack" />
         <activity
-            android:name=".activity.custom_view.CustomViewActivity"
+            android:name=".activity.android.custom_view.CustomViewActivity"
             android:label="CustomView" />
         <activity
-            android:name=".activity.custom_view.ViewTouchActivity"
+            android:name=".activity.android.custom_view.ViewTouchActivity"
             android:label="ViewTouch" />
         <activity
-            android:name=".activity.ViewStudyActivity"
+            android:name=".activity.android.ViewStudyActivity"
             android:label="ViewStudy" />
         <activity
-            android:name=".activity.android_q.AppSpecificActivity"
+            android:name=".activity.android.android_q.AppSpecificActivity"
             android:label="AppSpecific" />
         <activity
-            android:name=".activity.AndroidForQActivity"
+            android:name=".activity.android.AndroidForQActivity"
             android:label="AndroidForQ" />
         <activity
-            android:name=".activity.bitmap.LargeBitmapActivity"
+            android:name=".activity.android.bitmap.LargeBitmapActivity"
             android:label="BitmapRegionDecoder" />
         <activity
-            android:name=".activity.BitmapActivity"
+            android:name=".activity.android.BitmapActivity"
             android:label="Bitmap" />
         <activity
-            android:name=".activity.thread.IntentServiceActivity"
+            android:name=".activity.android.thread.IntentServiceActivity"
             android:label="IntentService" />
         <activity
-            android:name=".activity.thread.HandlerThreadActivity"
+            android:name=".activity.android.thread.HandlerThreadActivity"
             android:label="HandlerThread" />
         <activity
-            android:name=".activity.thread.AsyncTaskActivity"
+            android:name=".activity.android.thread.AsyncTaskActivity"
             android:label="AsyncTask" />
         <activity
-            android:name=".activity.ThreadActivity"
+            android:name=".activity.android.ThreadActivity"
             android:label="线程并发" />
         <activity
-            android:name=".activity.zj.BroadcastActivity"
+            android:name=".activity.android.zj.BroadcastActivity"
             android:label="广播接收器" />
         <activity
-            android:name=".activity.zj.ContentProviderActivity"
+            android:name=".activity.android.zj.ContentProviderActivity"
             android:label="ContentProvider" />
         <activity
-            android:name=".activity.zj.OtherProcessActivity"
+            android:name=".activity.android.zj.OtherProcessActivity"
             android:process="other.process.ac" />
         <activity
-            android:name=".activity.zj.ServiceActivity"
+            android:name=".activity.android.zj.ServiceActivity"
             android:label="service启动方式" />
         <activity
-            android:name=".activity.zj.StartModeActivity"
+            android:name=".activity.android.zj.StartModeActivity"
             android:label="启动模式" />
         <activity
-            android:name=".activity.ZJActivity"
+            android:name=".activity.android.ZJActivity"
             android:label="四大组件"
             android:launchMode="singleTop" />
         <activity
@@ -137,7 +139,7 @@
             android:process="test.service" />
 
         <activity
-            android:name=".activity.zj.AIDLServiceActivity"
+            android:name=".activity.android.zj.AIDLServiceActivity"
             android:label="AIDLServiceActivity" />
 
         <service

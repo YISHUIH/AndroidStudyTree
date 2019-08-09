@@ -11,18 +11,18 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.study.R;
-import com.example.study.activity.AndroidForQActivity;
-import com.example.study.activity.BitmapActivity;
-import com.example.study.activity.JetPackActivity;
-import com.example.study.activity.KeepProcessAliveActivity;
-import com.example.study.activity.RetrofitActivity;
-import com.example.study.activity.SpannableStringActivity;
-import com.example.study.activity.ThreadActivity;
-import com.example.study.activity.ViewStudyActivity;
-import com.example.study.activity.ZJActivity;
-import com.example.study.activity.filemanager.FileManagerActivity;
-import com.example.study.activity.html.HtmlActivity;
-import com.example.study.activity.ui.ViewStubActivity;
+import com.example.study.activity.android.AndroidForQActivity;
+import com.example.study.activity.android.BitmapActivity;
+import com.example.study.activity.android.JetPackActivity;
+import com.example.study.activity.android.KeepProcessAliveActivity;
+import com.example.study.activity.android.RetrofitActivity;
+import com.example.study.activity.android.SpannableStringActivity;
+import com.example.study.activity.android.ThreadActivity;
+import com.example.study.activity.android.ViewStudyActivity;
+import com.example.study.activity.android.ZJActivity;
+import com.example.study.activity.android.filemanager.FileManagerActivity;
+import com.example.study.activity.android.html.HtmlActivity;
+import com.example.study.activity.android.ui.ViewStubActivity;
 
 import java.util.Objects;
 

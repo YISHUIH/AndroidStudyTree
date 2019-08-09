@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.custom_view.ViewTouchActivity">
+    tools:context=".activity.android.custom_view.ViewTouchActivity">
 
     <com.example.study.view.CustomFrameLayout
         android:id="@+id/cfl"

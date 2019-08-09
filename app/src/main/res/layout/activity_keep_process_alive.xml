@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".activity.KeepProcessAliveActivity">
+    tools:context=".activity.android.KeepProcessAliveActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

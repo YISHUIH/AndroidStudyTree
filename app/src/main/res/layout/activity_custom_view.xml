@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.custom_view.CustomViewActivity">
+    tools:context=".activity.android.custom_view.CustomViewActivity">
 
     <TextView
         android:id="@+id/title"

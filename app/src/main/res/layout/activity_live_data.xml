@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".activity.jetpack.LiveDataActivity">
+    tools:context=".activity.android.jetpack.LiveDataActivity">
 
     <TextView
         android:id="@+id/tv"

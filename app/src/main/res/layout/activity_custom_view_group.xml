@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".activity.custom_view.CustomViewGroupActivity">
+    tools:context=".activity.android.custom_view.CustomViewGroupActivity">
 
     <com.example.study.view.CustomViewGroup
         android:id="@+id/mViewGroup"
