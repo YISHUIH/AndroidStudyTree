@@ -3,10 +3,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.study">
 
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
+
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
 
     <application
         android:allowBackup="true"
@@ -16,7 +25,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".activity.java.PXSFActivity"></activity>
+        <activity android:name=".activity.android.openGl.AudioDemoActivity"></activity>
+        <activity android:name=".activity.android.openGl.OpenGlActivity" />
+        <activity android:name=".activity.android.android_q.APPExternalActivity" />
+        <activity android:name=".activity.android.CaughtExceptionActivity" />
+        <activity android:name=".activity.java.PXSFActivity" />
         <activity android:name=".activity.java.SJSFActivity" />
         <activity
             android:name=".activity.android.html.HtmlActivity"

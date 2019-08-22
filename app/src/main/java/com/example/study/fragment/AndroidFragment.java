@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import com.example.study.R;
 import com.example.study.activity.android.AndroidForQActivity;
 import com.example.study.activity.android.BitmapActivity;
+import com.example.study.activity.android.CaughtExceptionActivity;
 import com.example.study.activity.android.JetPackActivity;
 import com.example.study.activity.android.KeepProcessAliveActivity;
 import com.example.study.activity.android.RetrofitActivity;
@@ -22,6 +23,8 @@ import com.example.study.activity.android.ViewStudyActivity;
 import com.example.study.activity.android.ZJActivity;
 import com.example.study.activity.android.filemanager.FileManagerActivity;
 import com.example.study.activity.android.html.HtmlActivity;
+import com.example.study.activity.android.openGl.AudioDemoActivity;
+import com.example.study.activity.android.openGl.OpenGlActivity;
 import com.example.study.activity.android.ui.ViewStubActivity;
 
 import java.util.Objects;
@@ -69,7 +72,8 @@ public class AndroidFragment extends Fragment {
     }
 
 
-    @OnClick({R.id.zj, R.id.thread, R.id.bitmap, R.id.android_Q, R.id.view, R.id.jet_pack, R.id.file_manager, R.id.retrofit, R.id.keep_process_alive, R.id.spannable_string, R.id.view_sub,R.id.html})
+    @OnClick({R.id.zj, R.id.thread, R.id.bitmap, R.id.android_Q, R.id.view, R.id.jet_pack, R.id.file_manager, R.id.retrofit, R.id.keep_process_alive
+            , R.id.spannable_string, R.id.view_sub,R.id.html,R.id.caughtException,R.id.OpenGL,R.id.audio})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.zj:
@@ -107,6 +111,15 @@ public class AndroidFragment extends Fragment {
                 break;
             case R.id.html:
                 HtmlActivity.Companion.start(Objects.requireNonNull(getActivity()));
+                break;
+            case R.id.caughtException:
+                CaughtExceptionActivity.Companion.start(Objects.requireNonNull(getActivity()));
+                break;
+            case R.id.OpenGL:
+                OpenGlActivity.Companion.start(Objects.requireNonNull(getActivity()));
+                break;
+            case R.id.audio:
+                AudioDemoActivity.Companion.start(Objects.requireNonNull(getActivity()));
                 break;
             default:
         }

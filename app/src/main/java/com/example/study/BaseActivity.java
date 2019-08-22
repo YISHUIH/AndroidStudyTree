@@ -3,9 +3,11 @@ package com.example.study;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
+
+import androidx.annotation.Nullable;
+
+import com.example.study.base.activity.BasePermissionActivity;
 
 /**
  * Copyright , 2015-2019 <br>
@@ -13,7 +15,7 @@ import android.util.Log;
  * Date: 2019/6/18 14:35    <br>
  * Description: BaseActivity  <br>
  */
-public class BaseActivity extends AppCompatActivity {
+public class BaseActivity extends BasePermissionActivity {
     protected String TAG = getClass().getSimpleName();
 
 
