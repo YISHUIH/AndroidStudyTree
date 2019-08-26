@@ -11,6 +11,7 @@ import android.os.RemoteException;
 import android.util.Log;
 
 import com.example.study.BaseService;
+import com.example.study.util.LogUtil;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -35,7 +36,7 @@ public class MyService extends BaseService {
         handler = new MyHandler();
         messenger = new Messenger(handler);
         Thread.currentThread().setName("service---thread");
-        Log.i("life: ", "service--name--------" + Thread.currentThread().getName());
+        LogUtil.Companion.i("life: ", "service--name--------" + Thread.currentThread().getName());
     }
 
     @Override
@@ -81,7 +82,7 @@ public class MyService extends BaseService {
         @Override
         public void dispatchMessage(Message msg) {
             super.dispatchMessage(msg);
-            Log.i("life", "MyHandler----dispatchMessage");
+            LogUtil.Companion.i("life", "MyHandler----dispatchMessage");
 
 
         }
@@ -89,7 +90,7 @@ public class MyService extends BaseService {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            Log.i("life", "MyHandler----handleMessage");
+            LogUtil.Companion.i("life", "MyHandler----handleMessage");
             Messenger messenger=msg.replyTo;
             try {
                 msg=Message.obtain();

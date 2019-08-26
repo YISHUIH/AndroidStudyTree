@@ -10,6 +10,8 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
+import com.example.study.util.LogUtil;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -153,26 +155,26 @@ public class CustomView extends View {
         mCenterTextDefalutY = mCenterY;
 
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        Log.e(TAG, "onMeasure");
+        LogUtil.Companion.e(TAG, "onMeasure");
     }
 
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
-        Log.e(TAG, "onLayout");
+        LogUtil.Companion.e(TAG, "onLayout");
         super.onLayout(changed, left, top, right, bottom);
 
     }
 
     @Override
     public void layout(int l, int t, int r, int b) {
-        Log.e(TAG, "layout");
+        LogUtil.Companion.e(TAG, "layout");
         super.layout(l, t, r, b);
     }
 
 
     @Override
     protected void onDraw(Canvas canvas) {
-        Log.e(TAG, "onDraw");
+        LogUtil.Companion.e(TAG, "onDraw");
         super.onDraw(canvas);
 
         //没有数据就返回
@@ -278,14 +280,14 @@ public class CustomView extends View {
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {
-        Log.e(TAG, "dispatchTouchEvent" + "  action: " + event.getAction());
+        LogUtil.Companion.e(TAG, "dispatchTouchEvent" + "  action: " + event.getAction());
         return super.dispatchTouchEvent(event);
     }
 
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        Log.e(TAG, "onTouchEvent");
+        LogUtil.Companion.e(TAG, "onTouchEvent");
 
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             x = event.getX();
@@ -361,7 +363,7 @@ public class CustomView extends View {
 
     @Override
     public boolean performClick() {
-        Log.e(TAG, "performClick");
+        LogUtil.Companion.e(TAG, "performClick");
         return super.performClick();
     }
 

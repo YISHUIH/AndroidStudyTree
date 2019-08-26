@@ -14,6 +14,7 @@ import com.example.study.activity.android.zj.BroadcastActivity;
 import com.example.study.activity.android.zj.ContentProviderActivity;
 import com.example.study.activity.android.zj.ServiceActivity;
 import com.example.study.activity.android.zj.StartModeActivity;
+import com.example.study.util.LogUtil;
 
 
 import butterknife.BindView;
@@ -82,6 +83,6 @@ public class ZJActivity extends BaseActivity {
         super.onNewIntent(intent);
         setIntent(intent);
         getIntent();
-        Log.e("title", intent.getStringExtra("title"));
+        LogUtil.Companion.e("title", intent.getStringExtra("title"));
     }
 }

@@ -12,6 +12,8 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
+import com.example.study.util.LogUtil;
+
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -93,7 +95,7 @@ public class ShowLargeBitmap extends View {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        Log.e(TAG, "onMeasure");
+        LogUtil.Companion.e(TAG, "onMeasure");
         int viewWidth = MeasureSpec.getSize(widthMeasureSpec);
         int viewHeight = MeasureSpec.getSize(heightMeasureSpec);
         centerViewX = viewWidth / 2;
@@ -115,13 +117,13 @@ public class ShowLargeBitmap extends View {
     @Override
     public void layout(int l, int t, int r, int b) {
         super.layout(l, t, r, b);
-        Log.e(TAG, "layout");
+        LogUtil.Companion.e(TAG, "layout");
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        Log.e(TAG, "onDraw");
+        LogUtil.Companion.e(TAG, "onDraw");
         if (mDecoder == null) {
             return;
         }
@@ -146,7 +148,7 @@ public class ShowLargeBitmap extends View {
      * @param mInputStream
      */
     public void setmInputStream(InputStream mInputStream) {
-        Log.e(TAG, "setmInputStream");
+        LogUtil.Companion.e(TAG, "setmInputStream");
         if (mOptions == null) {
             mOptions = new BitmapFactory.Options();
         }
@@ -168,7 +170,7 @@ public class ShowLargeBitmap extends View {
             mDecoder = BitmapRegionDecoder.newInstance(mInputStream, true);
         } catch (IOException e) {
             e.printStackTrace();
-            Log.e(TAG, "IOException:  " + e.getMessage());
+            LogUtil.Companion.e(TAG, "IOException:  " + e.getMessage());
         }
 
         //实例化矩阵

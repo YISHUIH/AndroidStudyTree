@@ -15,6 +15,7 @@ import com.example.study.BaseActivity;
 import com.example.study.R;
 import com.example.study.activity.android.bitmap.CustomDrawableActivity;
 import com.example.study.activity.android.bitmap.LargeBitmapActivity;
+import com.example.study.util.LogUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -47,8 +48,8 @@ public class BitmapActivity extends BaseActivity {
         int byteCount = bitmap.getByteCount();
         int allocationByteCount = bitmap.getAllocationByteCount();
 
-        Log.e("bitmap", "width: " + width + "   height: " + height + "  rowBytes: " + rowBytes + "  byteCount: " + byteCount + "ssssssss" + rowBytes * height);
-        Log.e("bitmap", "allocationByteCount: " + allocationByteCount);
+        LogUtil.Companion.e("bitmap", "width: " + width + "   height: " + height + "  rowBytes: " + rowBytes + "  byteCount: " + byteCount + "ssssssss" + rowBytes * height);
+        LogUtil.Companion.e("bitmap", "allocationByteCount: " + allocationByteCount);
 
         iv.setImageBitmap(bitmap);
 
@@ -78,9 +79,9 @@ public class BitmapActivity extends BaseActivity {
         int height = bitmap1.getHeight();
         int width = bitmap1.getWidth();
 
-        Log.e("bitmap", "width: " + width + "   height: " + height + "  rowBytes: " + rowBytes + "  byteCount: " + byteCount + "ssssssss" + rowBytes * height);
+        LogUtil.Companion.e("bitmap", "width: " + width + "   height: " + height + "  rowBytes: " + rowBytes + "  byteCount: " + byteCount + "ssssssss" + rowBytes * height);
 
-        Log.e("bitmap", "allocationByteCount: " + allocationByteCount);
+        LogUtil.Companion.e("bitmap", "allocationByteCount: " + allocationByteCount);
 
         return bitmap1;
     }

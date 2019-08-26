@@ -5,22 +5,22 @@ import android.content.ContentUris
 import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
-import android.content.pm.ApplicationInfo
 import android.media.*
 import android.net.Uri
 import android.os.AsyncTask
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Log
 import com.example.study.BaseActivity
-import com.example.study.BuildConfig
 import com.example.study.R
+import com.example.study.util.LogUtil
 import kotlinx.android.synthetic.main.activity_audio_demo.*
+import java.io.BufferedReader
 import java.io.File
-import java.io.FileInputStream
-import java.io.FileOutputStream
-import java.io.OutputStream
+import java.io.InputStreamReader
+import java.io.SequenceInputStream
+import java.nio.ByteBuffer
+import java.nio.ByteOrder
 import java.util.*
 
 class AudioDemoActivity : BaseActivity() {
@@ -34,13 +34,23 @@ class AudioDemoActivity : BaseActivity() {
 
     lateinit var record: AudioRecord
     var isRecord: Boolean = false
-    lateinit var os: OutputStream
-    lateinit var fis: FileInputStream
+    lateinit var fileUri: Uri
     private lateinit var track: AudioTrack
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_audio_demo)
+
+        AsyncTask.THREAD_POOL_EXECUTOR.execute {
+            val wavUri = createFile("AudioTest", "test.wav")
+            val iis = contentResolver.openInputStream(wavUri)
+            val bytes=ByteArray(bufferSizeInBytes)
+            var s=iis.read(bytes,0,bufferSizeInBytes)
+            while (s>0) {
+                LogUtil.e("ssssss", Arrays.toString(bytes))
+                s = iis.read(bytes,0,bufferSizeInBytes)
+            }
+        }
         onRequestPermissions(arrayOf(Manifest.permission.RECORD_AUDIO, Manifest.permission.WRITE_EXTERNAL_STORAGE))
 
         audioRecord.setOnClickListener {
@@ -50,13 +60,11 @@ class AudioDemoActivity : BaseActivity() {
             }
 
         }
-
-
         audioTrack.setOnClickListener {
             track = createAudioTrack()
             track.play()
             AsyncTask.THREAD_POOL_EXECUTOR.execute {
-                createFile()
+                val fis = contentResolver.openInputStream(fileUri)
                 val buffer = ByteArray(bufferSizeInBytes)
                 var read = fis.read(buffer, 0, bufferSizeInBytes)
                 while (read != -1) {
@@ -65,16 +73,14 @@ class AudioDemoActivity : BaseActivity() {
                     }
                     track.write(buffer, 0, read)
                     read = fis.read(buffer, 0, bufferSizeInBytes)
-                    Log.e("ssssss", Arrays.toString(buffer))
                 }
                 fis.close()
             }
         }
 
         stopRecord.setOnClickListener {
-            if (record.state == AudioRecord.STATE_INITIALIZED) {
-                record.stop()
-                record.release()
+            AsyncTask.THREAD_POOL_EXECUTOR.execute {
+                stopRecord()
             }
 
         }
@@ -85,27 +91,59 @@ class AudioDemoActivity : BaseActivity() {
             }
         }
     }
+//
+//    /**
+//     * byte数组转换为二进制字符串,每个字节以","隔开
+//     **/
+//
+//
+//    fun bdsad(b: ByteArray): String {
+//        val result = StringBuffer()
+//        for (i in b) {
+//            result.append("${i & xff}")
+//        }
+//
+//        return result.toString().substring(0, result.length() - 1)
+//    }
+
+    private fun stopRecord() {
+        if (record.state == AudioRecord.STATE_INITIALIZED) {
+            record.stop()
+            record.release()
+            val wavUri = createFile("AudioTest", "test.wav")
+            val wavOS = contentResolver.openOutputStream(wavUri)
+            val fileIs = contentResolver.openInputStream(fileUri)
+            val wh = WavHeader(44100, 1, 16)
+            wh.mSubChunk2Size = fileIs.available()
+            wavOS.write(wh.header)
+            val bytes = ByteArray(bufferSizeInBytes)
+            var read = fileIs.read(bytes, 0, bufferSizeInBytes)
+            while (read > 0) {
+                wavOS.write(bytes,0,read)
+                read = fileIs.read(bytes, 0, bufferSizeInBytes)
+            }
+            wavOS.close()
+            fileIs.close()
+            fileIs.close()
+        }
+    }
+
+    fun byteArrayToShort(b: ByteArray): ByteBuffer {
+        return ByteBuffer.wrap(b).order(ByteOrder.LITTLE_ENDIAN)
+    }
 
     override fun onPermissionAllow(permission: String) {
         super.onPermissionAllow(permission)
-        os = createFile()
+        fileUri = createFile("AudioTest", "test.pcm")
     }
 
-//    fun createAudioTracj(): AudioTrack {
-//        val format = AudioFormat.Builder()
-//                .setChannelMask(AudioFormat.CHANNEL_OUT_STEREO)
-//                .setSampleRate(44100)
-//                .setEncoding(AudioFormat.ENCODING_PCM_16BIT)
-//                .build()
-//        return AudioTrack.Builder().setAudioFormat(format).build()
-//    }
 
     fun startRecord() {
         record = createAudioRecord()
         isRecord = true
         record.startRecording()
         val buffer = ByteArray(bufferSizeInBytes)
-
+        val os = contentResolver.openOutputStream(fileUri)
         while (isRecord && record.recordingState == AudioRecord.RECORDSTATE_RECORDING) {
             val s = record.read(buffer, 0, bufferSizeInBytes)
             if (s > 0) {
@@ -115,40 +153,42 @@ class AudioDemoActivity : BaseActivity() {
 
         os.close()
 
+        stopRecord()
     }
 
-    private fun createFile(): OutputStream {
+    private fun createFile(parent: String, fileName: String): Uri {
         val uri = MediaStore.Files.getContentUri("external")
         var fileUri: Uri
-        val values = ContentValues()
-        values.put(MediaStore.Files.FileColumns.DISPLAY_NAME, "dd.pcm")
-        values.put(MediaStore.Files.FileColumns.TITLE, "dd.pcm")
-        values.put(MediaStore.Files.FileColumns.MIME_TYPE, "NA")
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            values.put(MediaStore.Files.FileColumns.RELATIVE_PATH, "Download/tt")
+            val values = ContentValues()
+            values.put(MediaStore.Files.FileColumns.DISPLAY_NAME, fileName)
+            values.put(MediaStore.Files.FileColumns.TITLE, fileName)
+            values.put(MediaStore.Files.FileColumns.MIME_TYPE, "NA")
+            values.put(MediaStore.Files.FileColumns.RELATIVE_PATH, "Download/$parent")
             val cursor = contentResolver.query(uri, arrayOf(MediaStore.Files.FileColumns.DISPLAY_NAME, MediaStore.Files.FileColumns._ID)
-                    , "${MediaStore.Files.FileColumns.DISPLAY_NAME} =?", arrayOf("dd.pcm"), null)
+                    , "${MediaStore.Files.FileColumns.DISPLAY_NAME} =?", arrayOf(fileName), null)
             fileUri = if (!cursor.moveToNext()) {
                 contentResolver.insert(uri, values)
             } else {
                 val id = cursor.getLong(cursor.getColumnIndex(MediaStore.Files.FileColumns._ID))
                 ContentUris.appendId(uri.buildUpon(), id).build()
             }
-
-            fis = FileInputStream(contentResolver.openFileDescriptor(fileUri, "r").fileDescriptor)
-            return contentResolver.openOutputStream(fileUri)
+            return fileUri
         } else {
-            val dirs = File("/storage/emulated/0", "/Test/")
+            val dirs = File("/storage/emulated/0", "/$parent/")
             if (!dirs.exists()) {
+                LogUtil.e("ssssss", "111111111111")
                 dirs.mkdirs()
             }
 
-            val file = File(dirs, "dd.pcm")
+            val file = File(dirs, fileName)
             if (!file.exists()) {
                 file.createNewFile()
+                LogUtil.e("ssssss", "222222222222")
             }
-            fis = FileInputStream(file)
-            return FileOutputStream(file, false)
+            fileUri = Uri.fromFile(file)
+            return fileUri
         }
     }
 
@@ -169,7 +209,6 @@ class AudioDemoActivity : BaseActivity() {
     }
 
     fun createAudioTrack(): AudioTrack {
-
 
         val attributes = AudioAttributes.Builder()
                 .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)

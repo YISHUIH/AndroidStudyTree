@@ -8,6 +8,7 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 
 import com.example.study.base.activity.BasePermissionActivity;
+import com.example.study.util.LogUtil;
 
 /**
  * Copyright , 2015-2019 <br>
@@ -26,52 +27,52 @@ public class BaseActivity extends BasePermissionActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        Log.i("life", TAG + "-----onCreate");
+        LogUtil.Companion.i("life", TAG + "-----onCreate");
         super.onCreate(savedInstanceState);
     }
 
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-        Log.i("life", TAG + "-----onNewIntent");
+        LogUtil.Companion.i("life", TAG + "-----onNewIntent");
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
-        Log.i("life", TAG + "-----onRestart");
+        LogUtil.Companion.i("life", TAG + "-----onRestart");
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        Log.i("life", TAG + "-----onStart");
+        LogUtil.Companion.i("life", TAG + "-----onStart");
 
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        Log.i("life", TAG + "-----onResume");
+        LogUtil.Companion.i("life", TAG + "-----onResume");
 
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        Log.i("life", TAG + "-----onPause");
+        LogUtil.Companion.i("life", TAG + "-----onPause");
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        Log.i("life", TAG + "-----onStop");
+        LogUtil.Companion.i("life", TAG + "-----onStop");
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Log.i("life", TAG + "-----onDestroy");
+        LogUtil.Companion.i("life", TAG + "-----onDestroy");
 
     }
 

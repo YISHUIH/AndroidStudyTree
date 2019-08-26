@@ -7,6 +7,8 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.widget.FrameLayout;
 
+import com.example.study.util.LogUtil;
+
 /**
  * Copyright , 2015-2019, 健康无忧网络科技有限公司 <br>
  * Author: 陈刘磊 1070379530@qq.com <br>
@@ -18,46 +20,46 @@ public class CustomFrameLayout extends FrameLayout {
 
     public CustomFrameLayout(Context context) {
         super(context);
-        Log.e(TAG,"CustomFrameLayout");
+        LogUtil.Companion.e(TAG,"CustomFrameLayout");
     }
 
     public CustomFrameLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
-        Log.e(TAG,"CustomFrameLayout");
+        LogUtil.Companion.e(TAG,"CustomFrameLayout");
     }
 
     public CustomFrameLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        Log.e(TAG,"CustomFrameLayout");
+        LogUtil.Companion.e(TAG,"CustomFrameLayout");
     }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        Log.e(TAG,"onMeasure");
+        LogUtil.Companion.e(TAG,"onMeasure");
     }
 
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         super.onLayout(changed, left, top, right, bottom);
-        Log.e(TAG,"onLayout");
+        LogUtil.Companion.e(TAG,"onLayout");
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        Log.e(TAG,"onDraw");
+        LogUtil.Companion.e(TAG,"onDraw");
     }
 
     @Override
     public void requestLayout() {
         super.requestLayout();
-        Log.e(TAG,"requestLayout");
+        LogUtil.Companion.e(TAG,"requestLayout");
     }
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
-        Log.e(TAG,"dispatchTouchEvent"+"  action:"+ev.getAction());
+        LogUtil.Companion.e(TAG,"dispatchTouchEvent"+"  action:"+ev.getAction());
         if (ev.getAction()==MotionEvent.ACTION_DOWN){
             return true;
         }
@@ -66,7 +68,7 @@ public class CustomFrameLayout extends FrameLayout {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
-        Log.e(TAG,"onInterceptTouchEvent"+"  action:"+ev.getAction());
+        LogUtil.Companion.e(TAG,"onInterceptTouchEvent"+"  action:"+ev.getAction());
         if (ev.getAction()==MotionEvent.ACTION_MOVE){
             return true;
         }
@@ -76,7 +78,7 @@ public class CustomFrameLayout extends FrameLayout {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        Log.e(TAG,"onTouchEvent"+"  action:"+event.getAction());
+        LogUtil.Companion.e(TAG,"onTouchEvent"+"  action:"+event.getAction());
         if (event.getAction()==MotionEvent.ACTION_DOWN){
             return true;
         }
