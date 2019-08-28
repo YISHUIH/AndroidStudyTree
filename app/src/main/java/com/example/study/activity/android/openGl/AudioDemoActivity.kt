@@ -40,17 +40,6 @@ class AudioDemoActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_audio_demo)
-
-        AsyncTask.THREAD_POOL_EXECUTOR.execute {
-            val wavUri = createFile("AudioTest", "test.wav")
-            val iis = contentResolver.openInputStream(wavUri)
-            val bytes=ByteArray(bufferSizeInBytes)
-            var s=iis.read(bytes,0,bufferSizeInBytes)
-            while (s>0) {
-                LogUtil.e("ssssss", Arrays.toString(bytes))
-                s = iis.read(bytes,0,bufferSizeInBytes)
-            }
-        }
         onRequestPermissions(arrayOf(Manifest.permission.RECORD_AUDIO, Manifest.permission.WRITE_EXTERNAL_STORAGE))
 
         audioRecord.setOnClickListener {
@@ -119,7 +108,7 @@ class AudioDemoActivity : BaseActivity() {
             val bytes = ByteArray(bufferSizeInBytes)
             var read = fileIs.read(bytes, 0, bufferSizeInBytes)
             while (read > 0) {
-                wavOS.write(bytes,0,read)
+                wavOS.write(bytes, 0, read)
                 read = fileIs.read(bytes, 0, bufferSizeInBytes)
             }
             wavOS.close()
@@ -156,41 +145,7 @@ class AudioDemoActivity : BaseActivity() {
         stopRecord()
     }
 
-    private fun createFile(parent: String, fileName: String): Uri {
-        val uri = MediaStore.Files.getContentUri("external")
-        var fileUri: Uri
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            val values = ContentValues()
-            values.put(MediaStore.Files.FileColumns.DISPLAY_NAME, fileName)
-            values.put(MediaStore.Files.FileColumns.TITLE, fileName)
-            values.put(MediaStore.Files.FileColumns.MIME_TYPE, "NA")
-            values.put(MediaStore.Files.FileColumns.RELATIVE_PATH, "Download/$parent")
-            val cursor = contentResolver.query(uri, arrayOf(MediaStore.Files.FileColumns.DISPLAY_NAME, MediaStore.Files.FileColumns._ID)
-                    , "${MediaStore.Files.FileColumns.DISPLAY_NAME} =?", arrayOf(fileName), null)
-            fileUri = if (!cursor.moveToNext()) {
-                contentResolver.insert(uri, values)
-            } else {
-                val id = cursor.getLong(cursor.getColumnIndex(MediaStore.Files.FileColumns._ID))
-                ContentUris.appendId(uri.buildUpon(), id).build()
-            }
-            return fileUri
-        } else {
-            val dirs = File("/storage/emulated/0", "/$parent/")
-            if (!dirs.exists()) {
-                LogUtil.e("ssssss", "111111111111")
-                dirs.mkdirs()
-            }
-
-            val file = File(dirs, fileName)
-            if (!file.exists()) {
-                file.createNewFile()
-                LogUtil.e("ssssss", "222222222222")
-            }
-            fileUri = Uri.fromFile(file)
-            return fileUri
-        }
-    }
 
     //音频源，选择麦克风
     val audioSource = MediaRecorder.AudioSource.MIC

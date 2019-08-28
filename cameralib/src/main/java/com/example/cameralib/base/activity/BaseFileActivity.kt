@@ -6,7 +6,7 @@ import android.content.ContentValues
 import android.net.Uri
 import android.os.Build
 import android.provider.MediaStore
-import com.example.study.util.LogUtil
+import com.example.cameralib.util.LogUtil
 import java.io.File
 
 /**
@@ -17,8 +17,9 @@ import java.io.File
  */
 @SuppressLint("Registered")
 open class BaseFileActivity : BasePermissionActivity() {
-     var mParent: String?=null
-     var mFileName: String?=null
+
+    var mParent: String? = null
+    var mFileName: String? = null
     var mFileUri: Uri? = null
     /**
      * example for values
@@ -43,6 +44,7 @@ open class BaseFileActivity : BasePermissionActivity() {
     fun getStoragePermissions() {
         onRequestPermissions(arrayOf(android.Manifest.permission_group.STORAGE))
     }
+
     protected fun createFile(parent: String, fileName: String): Uri {
         val uri = MediaStore.Files.getContentUri("external")
         var fileUri: Uri?
@@ -56,13 +58,14 @@ open class BaseFileActivity : BasePermissionActivity() {
             val cursor = contentResolver.query(uri, arrayOf(MediaStore.Files.FileColumns.DISPLAY_NAME, MediaStore.Files.FileColumns._ID)
                     , "${MediaStore.Files.FileColumns.DISPLAY_NAME} =?", arrayOf(fileName), null)
 
-            fileUri = if (!cursor.moveToNext()) {
+            fileUri = if (!cursor!!.moveToNext()) {
                 contentResolver.insert(uri, values)
             } else {
                 val id = cursor.getLong(cursor.getColumnIndex(MediaStore.Files.FileColumns._ID))
                 ContentUris.appendId(uri.buildUpon(), id).build()
             }
-            return fileUri
+            cursor.close()
+            return fileUri!!
         } else {
             val dirs = File("/storage/emulated/0", "/$parent/")
             if (!dirs.exists()) {

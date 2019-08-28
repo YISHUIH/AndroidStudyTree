@@ -5,11 +5,14 @@ import android.Manifest.permission.READ_EXTERNAL_STORAGE
 import android.content.Context
 import android.content.Intent
 import android.graphics.BitmapFactory
+import android.os.AsyncTask
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
+import android.widget.TextView
 import com.example.study.BaseActivity
 import com.example.study.R
+import com.example.study.util.LogUtil
 import kotlinx.android.synthetic.main.activity_appexternal.*
 
 
@@ -26,7 +29,6 @@ class APPExternalActivity : BaseActivity() {
         setContentView(R.layout.activity_appexternal)
 
         onRequestPermissions(arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE, READ_EXTERNAL_STORAGE))
-
         album.setOnClickListener {
 
             val intent = Intent(Intent.ACTION_PICK)

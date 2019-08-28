@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.cameralib.CameraActivity;
 import com.example.study.R;
 import com.example.study.activity.android.AndroidForQActivity;
 import com.example.study.activity.android.BitmapActivity;
@@ -73,7 +74,7 @@ public class AndroidFragment extends Fragment {
 
 
     @OnClick({R.id.zj, R.id.thread, R.id.bitmap, R.id.android_Q, R.id.view, R.id.jet_pack, R.id.file_manager, R.id.retrofit, R.id.keep_process_alive
-            , R.id.spannable_string, R.id.view_sub,R.id.html,R.id.caughtException,R.id.OpenGL,R.id.audio})
+            , R.id.spannable_string, R.id.view_sub,R.id.html,R.id.caughtException,R.id.OpenGL,R.id.audio,R.id.video})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.zj:
@@ -120,6 +121,9 @@ public class AndroidFragment extends Fragment {
                 break;
             case R.id.audio:
                 AudioDemoActivity.Companion.start(Objects.requireNonNull(getActivity()));
+                break;
+            case R.id.video:
+                CameraActivity.Companion.start(Objects.requireNonNull(getActivity()));
                 break;
             default:
         }

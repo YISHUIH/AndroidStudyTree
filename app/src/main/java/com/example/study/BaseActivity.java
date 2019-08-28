@@ -7,6 +7,7 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
+import com.example.study.base.activity.BaseFileActivity;
 import com.example.study.base.activity.BasePermissionActivity;
 import com.example.study.util.LogUtil;
 
@@ -16,7 +17,7 @@ import com.example.study.util.LogUtil;
  * Date: 2019/6/18 14:35    <br>
  * Description: BaseActivity  <br>
  */
-public class BaseActivity extends BasePermissionActivity {
+public class BaseActivity extends BaseFileActivity {
     protected String TAG = getClass().getSimpleName();
 
 
