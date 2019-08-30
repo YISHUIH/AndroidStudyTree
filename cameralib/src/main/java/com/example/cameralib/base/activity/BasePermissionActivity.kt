@@ -1,4 +1,4 @@
-package com.example.study.base.activity
+package com.example.cameralib.base.activity
 
 import android.annotation.SuppressLint
 import android.content.pm.PackageManager
@@ -17,6 +17,7 @@ import java.util.*
 @SuppressLint("Registered")
 open class BasePermissionActivity : AppCompatActivity() {
 
+    var permissionAllowed=false
 
     fun onRequestPermissions(permissions: Array<out String>) {
 
@@ -58,7 +59,9 @@ open class BasePermissionActivity : AppCompatActivity() {
      * 权限被拒绝
      */
     open fun onPermissionDeny(permission: String, requestCode: Int) {
+        permissionAllowed=false
         onPermissionDeny(permission)
+
         Log.e("permission", "$permission  权限被拒绝")
         Toast.makeText(this, "$permission 权限被拒绝", Toast.LENGTH_SHORT).show()
     }
@@ -67,6 +70,7 @@ open class BasePermissionActivity : AppCompatActivity() {
      * 权限被允许
      */
     open fun onPermissionAllow(permission: String, requestCode: Int) {
+        permissionAllowed=true
         onPermissionAllow(permission)
         Log.e("permission", "$permission  权限被允许")
         Toast.makeText(this, "$permission 权限被允许", Toast.LENGTH_SHORT).show()
@@ -76,6 +80,7 @@ open class BasePermissionActivity : AppCompatActivity() {
      * 权限被拒绝
      */
     open fun onPermissionDeny(permission: String) {
+        permissionAllowed=false
         Log.e("permission", "$permission  权限被拒绝")
         Toast.makeText(this, "$permission 权限被拒绝", Toast.LENGTH_SHORT).show()
     }
@@ -84,6 +89,7 @@ open class BasePermissionActivity : AppCompatActivity() {
      * 权限被允许
      */
     open fun onPermissionAllow(permission: String) {
+        permissionAllowed=true
         Log.e("permission", "$permission  权限被允许")
         Toast.makeText(this, "$permission 权限被允许", Toast.LENGTH_SHORT).show()
     }

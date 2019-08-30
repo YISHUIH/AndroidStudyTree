@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import com.example.cameralib.util.LogUtil
-import com.example.study.base.activity.BaseFileActivity
 
 /**
  * Copyright , 2015-2019 <br></br>

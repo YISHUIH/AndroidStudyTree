@@ -6,6 +6,7 @@ import android.content.ContentValues
 import android.net.Uri
 import android.os.Build
 import android.provider.MediaStore
+import com.example.cameralib.base.activity.BasePermissionActivity
 import com.example.study.util.LogUtil
 import java.io.File
 

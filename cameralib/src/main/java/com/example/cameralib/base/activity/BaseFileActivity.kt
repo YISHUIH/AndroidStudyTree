@@ -1,4 +1,4 @@
-package com.example.study.base.activity
+package com.example.cameralib.base.activity
 
 import android.annotation.SuppressLint
 import android.content.ContentUris
@@ -6,6 +6,7 @@ import android.content.ContentValues
 import android.net.Uri
 import android.os.Build
 import android.provider.MediaStore
+import com.example.cameralib.base.activity.BasePermissionActivity
 import com.example.cameralib.util.LogUtil
 import java.io.File
 

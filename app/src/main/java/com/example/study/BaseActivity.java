@@ -3,12 +3,10 @@ package com.example.study;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 
 import androidx.annotation.Nullable;
 
-import com.example.study.base.activity.BaseFileActivity;
-import com.example.study.base.activity.BasePermissionActivity;
+import com.example.cameralib.base.activity.BaseFileActivity;
 import com.example.study.util.LogUtil;
 
 /**
