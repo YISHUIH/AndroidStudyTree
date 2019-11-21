@@ -4,7 +4,9 @@ import android.animation.ValueAnimator
 import android.graphics.*
 import android.graphics.drawable.Drawable
 import android.os.CountDownTimer
-import androidx.core.animation.*
+import androidx.core.animation.doOnCancel
+import androidx.core.animation.doOnEnd
+import androidx.core.animation.doOnStart
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
@@ -33,7 +35,6 @@ abstract class TakePhotoDrawable : Drawable(), LifecycleObserver {
         set(value) {
             outRadius += field - value
             field = value
-
             invalidateSelf()
         }
     private var outRadius = 0.0f
@@ -60,9 +61,9 @@ abstract class TakePhotoDrawable : Drawable(), LifecycleObserver {
         paint.isAntiAlias = true
         paint.style = Paint.Style.FILL
 
-        videoPaint.color = Color.BLUE
+        videoPaint.isAntiAlias = true
+        videoPaint.color =  Color.parseColor("#00AAFF")
         videoPaint.style = Paint.Style.STROKE
-        paint.isAntiAlias = true
         videoPaint.strokeWidth = STROKE_WIDTH
     }
 
@@ -185,17 +186,17 @@ abstract class TakePhotoDrawable : Drawable(), LifecycleObserver {
         }
 
         animVideoing.doOnStart {
-            LogUtil.e("TakePhotoDrawables","doOnStart")
+            LogUtil.e("TakePhotoDrawables", "doOnStart")
             //开始计时
             cdt.start()
             startVideo()
         }
         animVideoing.doOnEnd {
-            LogUtil.e("TakePhotoDrawables","doOnEnd")
+            LogUtil.e("TakePhotoDrawables", "doOnEnd")
             onStop()
         }
         animVideoing.doOnCancel {
-            LogUtil.e("TakePhotoDrawables","doOnCancel")
+            LogUtil.e("TakePhotoDrawables", "doOnCancel")
             defaultStatus = STATUS_TAKE_PHOTO
             resetRadius()
             stopVideo()
@@ -206,7 +207,7 @@ abstract class TakePhotoDrawable : Drawable(), LifecycleObserver {
 
     @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
     fun onStop() {
-        LogUtil.e("TakePhotoDrawable","onStop")
+        LogUtil.e("TakePhotoDrawable", "onStop")
         if (animRadiusChange.isRunning) {
             animRadiusChange.cancel()
         }
@@ -216,6 +217,6 @@ abstract class TakePhotoDrawable : Drawable(), LifecycleObserver {
         cdt.cancel()
     }
 
-   abstract fun startVideo()
-   abstract fun stopVideo()
+    abstract fun startVideo()
+    abstract fun stopVideo()
 }

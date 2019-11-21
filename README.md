@@ -46,3 +46,10 @@ android 、JetPack、java、网络、性能优化、数据库、
   
 - **TestSpannableStringUtil**
   1. 适用于搜索改变指定内容颜色
+  
+- **音频视频、相机拍照录像**
+  1. 录制音频  AudioTrack录制
+  2. 录制视频  MediaRecorder
+  3. 相机拍照  ImageReader
+  4. camera2
+  5. cameraX   CameraView
