@@ -29,4 +29,17 @@
             android:layout_height="match_parent"
             android:text="IntentService" />
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/thread_local"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Thread_local" />
+
+
+    </LinearLayout>
 </LinearLayout>

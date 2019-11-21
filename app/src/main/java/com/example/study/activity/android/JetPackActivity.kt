@@ -35,7 +35,7 @@ class JetPackActivity : BaseActivity(), View.OnClickListener {
         var v = view
 //        v = null
         when (v?.id ?: R.id.bt_lifecycle) {
-            R.id.bt_lifecycle -> com.example.study.activity.android.jetpack.LifecycleActivity.start(this)
+            R.id.bt_lifecycle -> LifecycleActivity.start(this)
             R.id.bt_live_data -> LiveDataActivity.start(this)
             R.id.bt_data_banding -> DataBindingActivity.start(this)
             R.id.bt_view_model -> ViewModelActivity.start(this)

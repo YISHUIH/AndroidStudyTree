@@ -1,7 +1,12 @@
 package com.example.study;
 
+import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
+
+import com.example.study.service.MyService;
+import com.example.study.util.LogUtil;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -16,6 +21,10 @@ import com.example.study.view.NoScrollViewPager;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.FutureTask;
+
+import okhttp3.internal.ws.RealWebSocket;
 
 public class MainActivity extends BaseActivity {
     private NoScrollViewPager vp;

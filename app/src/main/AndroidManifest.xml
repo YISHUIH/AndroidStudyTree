@@ -25,6 +25,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity
+            android:name=".activity.android.thread.ThreadLocalDemoActivity"
+            android:label="@string/title_activity_thread_local_demo"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".activity.java.AnnotationActivity"
+            android:configChanges="locale"
+            android:label="注解Annotation"
+            android:screenOrientation="portrait" />
         <activity android:name=".activity.android.openGl.AudioDemoActivity" />
         <activity android:name=".activity.android.openGl.OpenGlActivity" />
         <activity android:name=".activity.android.android_q.APPExternalActivity" />
@@ -138,7 +147,8 @@
             android:launchMode="singleTop" />
         <activity
             android:name=".MainActivity"
-            android:label="@string/title_activity_main2">
+            android:label="@string/title_activity_main2"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -13,9 +13,9 @@ import java.io.File
  * Date: 2019/8/29 14:03    <br>
  * Description: 文件工具类  <br>
  */
-class FileUtil {
-    companion object{
-         fun createFile(parent: String, fileName: String,contentResolver:ContentResolver): Uri {
+ class  FileUtil {
+    companion object {
+        fun createFile(parent: String, fileName: String, contentResolver: ContentResolver): Uri {
             val uri = MediaStore.Files.getContentUri("external")
             var fileUri: Uri?
 
@@ -52,5 +52,25 @@ class FileUtil {
                 return fileUri
             }
         }
+
+
+        fun getFileFromUri(fileUri: Uri, contentResolver: ContentResolver): File {
+            var filePath: String? = ""
+            if (Build.VERSION.SDK_INT >= 29) {
+                val cursor = contentResolver.query(fileUri, null, null, null, null)
+                if (cursor?.moveToFirst() == true) {
+                    filePath = cursor.getString(cursor.getColumnIndex(MediaStore.Files.FileColumns.DATA))
+                } else {
+                    LogUtil.e("ShowVideoActivity", "move to first failed")
+                }
+                cursor?.close()
+            } else {
+                filePath = fileUri.path
+            }
+
+            return File(filePath)
+        }
     }
+
+
 }

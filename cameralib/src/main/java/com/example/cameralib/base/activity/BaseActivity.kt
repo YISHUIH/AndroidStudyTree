@@ -13,15 +13,6 @@ import com.example.cameralib.util.LogUtil
  */
 open class BaseActivity : BaseFileActivity() {
     protected var TAG = javaClass.simpleName
-
-
-    companion object {
-        fun start(context: Context, c: Class<out BaseActivity>) {
-            val starter = Intent(context, c)
-            context.startActivity(starter)
-        }
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         LogUtil.i("life", "$TAG-----onCreate")
         super.onCreate(savedInstanceState)

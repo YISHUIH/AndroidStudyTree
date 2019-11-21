@@ -2,14 +2,14 @@ package com.example.study.activity.android.android_q
 
 import android.Manifest
 import android.Manifest.permission.READ_EXTERNAL_STORAGE
+import android.content.ContentUris
 import android.content.Context
 import android.content.Intent
 import android.graphics.BitmapFactory
-import android.os.AsyncTask
+import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
-import android.widget.TextView
 import com.example.study.BaseActivity
 import com.example.study.R
 import com.example.study.util.LogUtil
@@ -37,8 +37,32 @@ class APPExternalActivity : BaseActivity() {
         }
 
         photo.setOnClickListener {
-            val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-            startActivityForResult(intent, 0)
+//            val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+//            startActivityForResult(intent, 0)
+            val AUTHORITY = "document"
+
+             val CONTENT_AUTHORITY_SLASH = "content://$AUTHORITY/"
+            val mediaUri = MediaStore.Files.getContentUri("external")
+//            val mediaUri = Uri.parse(CONTENT_AUTHORITY_SLASH+"external")
+//            val mediaUri = MediaStore.Audio.Media.INTERNAL_CONTENT_URI
+            LogUtil.e("mediaUri====",mediaUri.toString())
+//            val uri = MediaStore.getDocumentUri(this,mediaUri)
+            val protections = arrayOf(MediaStore.Files.FileColumns._ID, MediaStore.Files.FileColumns.DATA)
+            val selections = "${MediaStore.Files.FileColumns.DISPLAY_NAME} like ?"
+            val selectionArgs = arrayOf("%.jpeg")
+            val cursor = contentResolver.query(mediaUri, null, null, null, null)
+
+            while (cursor.moveToNext()) {
+                val data = cursor.getString(cursor.getColumnIndex(MediaStore.Files.FileColumns.DATA))
+
+                val uri = ContentUris.appendId(mediaUri.buildUpon(),
+                        cursor.getLong(cursor.getColumnIndex(MediaStore.Files.FileColumns._ID)))
+                if (data==null)
+                    continue
+                LogUtil.e("name====",data)
+                LogUtil.e("uri====",uri.toString())
+            }
+            cursor.close()
 
         }
 //        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
@@ -126,7 +150,7 @@ class APPExternalActivity : BaseActivity() {
             val fd = contentResolver.openFileDescriptor(uri, "r")
             iv.setImageBitmap(BitmapFactory.decodeFileDescriptor(fd.fileDescriptor))
 
-        }finally {
+        } finally {
 
         }
 

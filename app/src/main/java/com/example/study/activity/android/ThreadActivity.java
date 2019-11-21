@@ -13,6 +13,7 @@ import com.example.study.R;
 import com.example.study.activity.android.thread.AsyncTaskActivity;
 import com.example.study.activity.android.thread.HandlerThreadActivity;
 import com.example.study.activity.android.thread.IntentServiceActivity;
+import com.example.study.activity.android.thread.ThreadLocalDemoActivity;
 
 
 import butterknife.BindView;
@@ -40,13 +41,11 @@ public class ThreadActivity extends BaseActivity {
         setContentView(R.layout.activity_thread);
         ButterKnife.bind(this);
         for (int i=0;i<10;i++){
-            AsyncTask.THREAD_POOL_EXECUTOR.execute(()->{
-                Log.e("thread","threadName"+Thread.currentThread().getName());
-            });
+            AsyncTask.THREAD_POOL_EXECUTOR.execute(()-> Log.e("thread","threadName"+Thread.currentThread().getName()));
         }
     }
 
-    @OnClick({R.id.async, R.id.handler_thread, R.id.intent_service})
+    @OnClick({R.id.async, R.id.handler_thread, R.id.intent_service,R.id.thread_local})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.async:
@@ -57,6 +56,9 @@ public class ThreadActivity extends BaseActivity {
                 break;
             case R.id.intent_service:
                 IntentServiceActivity.start(this);
+                break;
+            case R.id.thread_local:
+                ThreadLocalDemoActivity.Companion.start(this);
                 break;
             default:
         }

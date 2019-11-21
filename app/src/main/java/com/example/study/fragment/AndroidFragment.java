@@ -1,6 +1,7 @@
 package com.example.study.fragment;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,13 +28,28 @@ import com.example.study.activity.android.html.HtmlActivity;
 import com.example.study.activity.android.openGl.AudioDemoActivity;
 import com.example.study.activity.android.openGl.OpenGlActivity;
 import com.example.study.activity.android.ui.ViewStubActivity;
+import com.example.study.api.GetPrescriptionToken;
+import com.google.gson.JsonObject;
 
+import org.jetbrains.annotations.NotNull;
+
+import java.io.IOException;
 import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
+import okhttp3.Interceptor;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Copyright , 2015-2019 <br>
@@ -74,7 +90,7 @@ public class AndroidFragment extends Fragment {
 
 
     @OnClick({R.id.zj, R.id.thread, R.id.bitmap, R.id.android_Q, R.id.view, R.id.jet_pack, R.id.file_manager, R.id.retrofit, R.id.keep_process_alive
-            , R.id.spannable_string, R.id.view_sub,R.id.html,R.id.caughtException,R.id.OpenGL,R.id.audio,R.id.video})
+            , R.id.spannable_string, R.id.view_sub, R.id.html, R.id.caughtException, R.id.OpenGL, R.id.audio, R.id.video})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.zj:
@@ -127,5 +143,62 @@ public class AndroidFragment extends Fragment {
                 break;
             default:
         }
+    }
+
+    private void retrofit() {
+        Interceptor interceptor = new Interceptor() {
+            @NotNull
+            @Override
+            public Response intercept(@NotNull Chain chain) throws IOException {
+                Request request = chain.request();
+                RequestBody body = request.body();
+
+                MediaType mediaType = body.contentType();
+
+                Log.e("url", request.url().toString());
+                Log.e("url", "method" + request.method());
+                Log.e("url", "mediaType---" + mediaType.toString());
+                Log.e("url", "body---" + body.toString());
+                Log.e("url", "length---" + body.contentLength());
+
+                return chain.proceed(request);
+            }
+        };
+        OkHttpClient client = new OkHttpClient.Builder()
+                .addInterceptor(interceptor)
+                .build();
+        Retrofit retrofit = new Retrofit.Builder()
+                //解析方法
+                .addConverterFactory(GsonConverterFactory.create())
+                .baseUrl("https://cflz.nj12320.org/pbminterface/")
+                .client(client)
+                .build();
+        GetPrescriptionToken getPrescriptionToken = retrofit.create(GetPrescriptionToken.class);
+
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("hosCode", "123254");
+        jsonObject.addProperty("grantCode", "1232");
+        jsonObject.addProperty("grantKey", "xxxx");
+        String s = jsonObject.toString();
+        Log.e("url", "body1---" + s);
+
+        RequestBody requestBody = RequestBody.create(s, MediaType.parse("application/json;charset=utf-8"));
+        Call<JsonObject> request = null;
+        try {
+            request = getPrescriptionToken.request(requestBody, requestBody.contentLength());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        request.enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> call, retrofit2.Response<JsonObject> response) {
+                Log.e("url", response.toString());
+            }
+
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+                Log.e("url", "onFailure" + call.toString() + t.getMessage());
+            }
+        });
     }
 }

@@ -3,7 +3,6 @@ package com.example.study.api
 import com.example.study.entity.RepositorySearchBean
 import retrofit2.Call
 import retrofit2.http.GET
-import retrofit2.http.Path
 import retrofit2.http.Query
 
 /**
@@ -17,5 +16,5 @@ interface RequestRepositorySearch {
      * search/repositories?q="ButterKnife"&page=1&per_page=1
      */
     @GET("search/repositories?per_page=10")
-    fun request(@Query("q") name: String?,@Query("page") index:Int): Call<RepositorySearchBean>
+    fun request(@Query("q") name: String?, @Query("page") index: Int): Call<RepositorySearchBean>
 }
