@@ -3,15 +3,12 @@ package com.example.cameralib
 import android.Manifest
 import android.content.Context
 import android.content.Intent
-import android.graphics.*
-import android.media.ImageReader
+import android.graphics.Color
 import android.os.Bundle
-import android.provider.MediaStore
 import android.view.MotionEvent
 import android.view.WindowManager
 import androidx.camera.core.CameraX
 import androidx.camera.core.ImageCapture
-import androidx.camera.core.ImageProxy
 import androidx.camera.core.VideoCapture
 import androidx.camera.view.CameraView
 import com.example.cameralib.base.activity.BaseActivity
@@ -37,7 +34,7 @@ class CameraActivity : BaseActivity() {
         window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
         setContentView(R.layout.activity_camera)
 
-        onRequestPermissions(arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE))
+        onRequestPermissions(arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.RECORD_AUDIO))
 
 
     }
@@ -45,7 +42,7 @@ class CameraActivity : BaseActivity() {
     override fun onPermissionAllow(permission: String) {
         super.onPermissionAllow(permission)
         mCv.bindToLifecycle(this)
-        mCv.cameraLensFacing=CameraX.LensFacing.BACK
+        mCv.cameraLensFacing = CameraX.LensFacing.BACK
         mCv.captureMode = CameraView.CaptureMode.VIDEO
         initEvent()
     }
@@ -106,18 +103,21 @@ class CameraActivity : BaseActivity() {
             val file = FileUtil.getFileFromUri(fileUri, contentResolver)
             mCv.captureMode = CameraView.CaptureMode.IMAGE
 
-            LogUtil.e(TAG,"display.rotation  -----  ${ mCv.display.rotation}")
+            LogUtil.e(TAG, "display.rotation  -----  ${mCv.display.rotation}")
             mCv.takePicture(file, {
                 it.run()
             }, object : ImageCapture.OnImageSavedListener {
                 override fun onError(imageCaptureError: ImageCapture.ImageCaptureError, message: String, cause: Throwable?) {
-                    LogUtil.e(TAG,"takePicture  -----  onError")
+                    LogUtil.e(TAG, "takePicture  -----  onError")
                 }
 
                 override fun onImageSaved(file: File) {
-                    LogUtil.e(TAG,"takePicture  -----  onImageSaved")
+                    LogUtil.e(TAG, "takePicture  -----  onImageSaved")
 //                    mCv.captureMode = CameraView.CaptureMode.VIDEO
                     ShowPhotoActivity.start(this@CameraActivity, fileUri)
+                    runOnUiThread {
+                        mCv.captureMode = CameraView.CaptureMode.VIDEO
+                    }
                 }
             })
 
@@ -125,7 +125,9 @@ class CameraActivity : BaseActivity() {
         }
         //录像
         mIvTakePhoto.setOnLongClickListener {
-            takePhotoDrawable.defaultStatus = TakePhotoDrawable.STATUS_TAKE_VIDEO
+            if (mCv.captureMode == CameraView.CaptureMode.VIDEO) {
+                takePhotoDrawable.defaultStatus = TakePhotoDrawable.STATUS_TAKE_VIDEO
+            }
             true
         }
 
@@ -147,13 +149,11 @@ class CameraActivity : BaseActivity() {
     fun startVideoRecorder() {
         val fileUri = FileUtil.createFile("AudioTest", "audio.mp4", contentResolver)
         val file = FileUtil.getFileFromUri(fileUri, contentResolver)
-        MediaStore.Audio.Media.EXTERNAL_CONTENT_URI
-
         mCv.startRecording(file, {
             it.run()
         }, object : VideoCapture.OnVideoSavedListener {
             override fun onVideoSaved(file: File) {
-                ShowVideoActivity.start(this@CameraActivity)
+                ShowVideoActivity.start(this@CameraActivity, fileUri)
             }
 
             override fun onError(videoCaptureError: VideoCapture.VideoCaptureError, message: String, cause: Throwable?) {

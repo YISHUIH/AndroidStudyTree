@@ -7,8 +7,8 @@
     tools:context=".ShowVideoActivity">
 
 
-    <ImageView
-        android:id="@+id/mTv"
+    <VideoView
+        android:id="@+id/mVideoView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
