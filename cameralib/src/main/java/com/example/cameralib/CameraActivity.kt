@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.view.MotionEvent
 import android.view.WindowManager
 import androidx.camera.core.CameraX
+import androidx.camera.core.FlashMode
 import androidx.camera.core.ImageCapture
 import androidx.camera.core.VideoCapture
 import androidx.camera.view.CameraView
@@ -68,13 +69,14 @@ class CameraActivity : BaseActivity() {
         val flashStatusDrawable = FlashStatusDrawable()
         mIvFlash.setImageDrawable(flashStatusDrawable)
         mIvFlash.setOnClickListener {
-            flashStatusDrawable.status = if (flashStatusDrawable.status == FlashStatusDrawable.STATUS_ON) {
-                FlashStatusDrawable.STATUS_OFF
+            if (flashStatusDrawable.status == FlashStatusDrawable.STATUS_ON) {
+                flashStatusDrawable.status = FlashStatusDrawable.STATUS_OFF
+                mCv.flash = FlashMode.valueOf("OFF")
             } else {
-                FlashStatusDrawable.STATUS_ON
+                flashStatusDrawable.status = FlashStatusDrawable.STATUS_ON
+                mCv.flash = FlashMode.valueOf("ON")
             }
         }
-
         //拍照录像
         photoOrVideo()
     }
