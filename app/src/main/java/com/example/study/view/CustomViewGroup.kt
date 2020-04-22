@@ -11,8 +11,6 @@ import android.view.ViewGroup
 import kotlin.math.abs
 
 /**
- * Copyright , 2015-2019, 健康无忧网络科技有限公司 <br>
- * Author: 陈刘磊 1070379530@qq.com <br>
  * Date: 2019/7/30 16:36    <br>
  * Description:    <br>
  */

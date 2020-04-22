@@ -10,8 +10,6 @@ import android.widget.FrameLayout;
 import com.example.study.util.LogUtil;
 
 /**
- * Copyright , 2015-2019, 健康无忧网络科技有限公司 <br>
- * Author: 陈刘磊 1070379530@qq.com <br>
  * Date: 2019/7/5 14:12    <br>
  * Description: 自定义FrameLayout，查看事件分发情况   <br>
  */

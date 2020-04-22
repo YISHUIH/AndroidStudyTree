@@ -9,8 +9,6 @@ import androidx.appcompat.app.AppCompatActivity
 import java.util.*
 
 /**
- * Copyright , 2015-2019, 健康无忧网络科技有限公司 <br>
- * Author: 陈刘磊 1070379530@qq.com <br>
  * Date: 2019/8/9 17:16    <br>
  * Description: 权限申请的基类   <br>
  */
