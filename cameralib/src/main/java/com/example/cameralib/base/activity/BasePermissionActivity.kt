@@ -61,7 +61,6 @@ open class BasePermissionActivity : AppCompatActivity() {
         onPermissionDeny(permission)
 
         Log.e("permission", "$permission  权限被拒绝")
-        Toast.makeText(this, "$permission 权限被拒绝", Toast.LENGTH_SHORT).show()
     }
 
     /**
@@ -71,7 +70,6 @@ open class BasePermissionActivity : AppCompatActivity() {
         permissionAllowed=true
         onPermissionAllow(permission)
         Log.e("permission", "$permission  权限被允许")
-        Toast.makeText(this, "$permission 权限被允许", Toast.LENGTH_SHORT).show()
     }
 
     /**
@@ -80,7 +78,6 @@ open class BasePermissionActivity : AppCompatActivity() {
     open fun onPermissionDeny(permission: String) {
         permissionAllowed=false
         Log.e("permission", "$permission  权限被拒绝")
-        Toast.makeText(this, "$permission 权限被拒绝", Toast.LENGTH_SHORT).show()
     }
 
     /**
@@ -89,6 +86,5 @@ open class BasePermissionActivity : AppCompatActivity() {
     open fun onPermissionAllow(permission: String) {
         permissionAllowed=true
         Log.e("permission", "$permission  权限被允许")
-        Toast.makeText(this, "$permission 权限被允许", Toast.LENGTH_SHORT).show()
     }
 }
